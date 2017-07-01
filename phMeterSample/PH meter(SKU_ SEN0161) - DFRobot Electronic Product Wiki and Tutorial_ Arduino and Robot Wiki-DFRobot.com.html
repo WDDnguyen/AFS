@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#FAQ -->
+<html lang="en" dir="ltr" class="client-js ve-available"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>PH meter(SKU: SEN0161) - DFRobot Electronic Product Wiki and Tutorial: Arduino and Robot Wiki-DFRobot.com</title>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"PH_meter(SKU:_SEN0161)","wgTitle":"PH meter(SKU: SEN0161)","wgCurRevisionId":38154,"wgRevisionId":38154,"wgArticleId":1836,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Product Manual","SEN Series","Sensors","Source","Diagram"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"PH_meter(SKU:_SEN0161)","wgRelevantArticleId":1836,"wgRequestId":"7ebd728d83318855a83fb55a","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","usePageImages":false,"usePageDescriptions":false},"wgVisualEditorToolbarScrollOffset":0});mw.loader.implement("user.options",function($,jQuery,require,module){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function ( $, jQuery, require, module ) {
+mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});/*@nomin*/;
+
+});mw.loader.load(["mediawiki.page.startup","ext.visualEditor.desktopArticleTarget.init"]);});</script>
+<link rel="stylesheet" href="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/load.php">
+<style>
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9ElEQVR4AZWRA3AYURQArxrVHtW2bdu2bdu2zdi2bdu2bWxs7zeehZaw4f70kbs+zI3e/nWK+RWx3aOFlrL56Sy5SxrruG69hlv6OyK+mz+8KDSXdXembj0ispT7tjs4ZTIbpYBvxGSGKzZTeFrb7W/meN002swFs0U8ttpHTkF2BvCqWQrW35929bTsKm5Zb+SEwWwcY8wAngB9m7Z+d+rIPZ/npdy12M5p47n8dXsCYAf0qPy06eGMdktuDu9Qf+JmKl3SWM91qzVcN9tAbEYkwMaq0tyb1m/To5kP170el/BK8/qa6sJr70ydf+T/Uu5ab+Oo/lS0AkUBpIFWlZ9WPhxpse/PHO7YbOOczjL0vZV2lNxPPtG73dYXM+xvm2znrOl83tidoqCwMBgYXsPFB0on5S6pr+eK5TKuW67lgvaKvF8mL1dtfTL32FHxRdyx3cQpg7m4x9sCXKkTIzA4LDH44zWdzaUf71hv5rTG4uyzcusybxSX7aThbMQ8XgCYAp3rzTTQOiIh9PNlzY3FSuZxrzjme1Y7uGS6kjsWO4jPjM4FVjRZsvD4kO9XtTZzQn82NyzWc0B7AmZh6gA/hOYSGhfw9YbOVnarj+S7800AL2BIsxUAbWNToj7bhBuQmZcOsFdoKUC74rGheCwXmqAIQTc9jQcrADIAAAAASUVORK5CYII=);background-image:url(/wiki/resources/src/mediawiki.action/images/green-checkmark.png?d94f1)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}</style><style>
+.ve-activated #toc,.ve-activated #siteNotice,.ve-activated .mw-indicators, .ve-active #bodyContent > :not( #siteSub ):not( #contentSub ):not( .ve-ui-mwTocWidget ),.ve-activated #t-print,.ve-activated #t-permalink,.ve-activated #p-coll-print_export,.ve-activated #t-cite,.ve-deactivating .ve-ui-surface{display:none} .ve-activating .ve-ui-surface{height:0;overflow:hidden}.ve-activated #bodyContent,.ve-activated #firstHeading{opacity:0.6;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none} .ve-activated #content{position:relative}.ve-init-mw-desktopArticleTarget-loading-overlay{position:absolute;left:0;right:0;z-index:1;margin-top:-0.5em}.ve-init-mw-desktopArticleTarget-progress{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-desktopArticleTarget-progress-bar{height:1em;width:0} .mw-editsection{white-space:nowrap; unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection-divider{color:#555}
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+@media print {
+	li.gallerybox{vertical-align:top;display:inline-block}ul.gallery,li.gallerybox{zoom:1;*display:inline}ul.gallery{margin:2px;padding:2px;display:block}li.gallerycaption{font-weight:bold;text-align:center;display:block;word-wrap:break-word}li.gallerybox div.thumb{text-align:center;border:1px solid #ccc;margin:2px}div.gallerytext{overflow:hidden;font-size:94%;padding:2px 4px;word-wrap:break-word}}
+li.gallerybox{vertical-align:top;display:-moz-inline-box;display:inline-block}ul.gallery,li.gallerybox{zoom:1;*display:inline}ul.gallery{margin:2px;padding:2px;display:block}li.gallerycaption{font-weight:bold;text-align:center;display:block;word-wrap:break-word}li.gallerybox div.thumb{text-align:center;border:1px solid #ccc;background-color:#f9f9f9;margin:2px}li.gallerybox div.thumb img{display:block;margin:0 auto}div.gallerytext{overflow:hidden;font-size:94%;padding:2px 4px;word-wrap:break-word} ul.mw-gallery-nolines li.gallerybox div.thumb{background-color:transparent;border:none}ul.mw-gallery-nolines li.gallerybox div.gallerytext{text-align:center} ul.mw-gallery-packed li.gallerybox div.thumb,ul.mw-gallery-packed-overlay li.gallerybox div.thumb,ul.mw-gallery-packed-hover li.gallerybox div.thumb{background-color:transparent;border:none}ul.mw-gallery-packed li.gallerybox div.thumb img,ul.mw-gallery-packed-overlay li.gallerybox div.thumb img,ul.mw-gallery-packed-hover li.gallerybox div.thumb img{margin:0 auto}ul.mw-gallery-packed-hover li.gallerybox,ul.mw-gallery-packed-overlay li.gallerybox{position:relative}ul.mw-gallery-packed-hover div.gallerytextwrapper{overflow:hidden;height:0}ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper{position:absolute;background:white;background:rgba(255,255,255,0.8);padding:5px 10px;bottom:0;left:0; height:auto;font-weight:bold;margin:2px; }ul.mw-gallery-packed-hover,ul.mw-gallery-packed-overlay,ul.mw-gallery-packed{text-align:center}
+@media screen {
+	.tochidden,.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.toctoggle{font-size:94%}}
+@media print {
+	#toc.tochidden,.toctoggle{display:none}}
+#collapse-pre-one .mw-collapsible-toggle .up,#collapse-pre-one.mw-collapsed .mw-collapsible-toggle .down{display:none}#collapse-pre-one .mw-collapsible-toggle .down,#collapse-pre-one.mw-collapsed .mw-collapsible-toggle .up{display:block}</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/load(1).php">
+<script async="" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/load(2).php"></script>
+<meta name="generator" content="MediaWiki 1.27.1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="https://www.dfrobot.com/wiki/resources/assets/wiki.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://www.dfrobot.com/wiki/opensearch_desc.php" title="DFRobot Electronic Product Wiki and Tutorial: Arduino and Robot Wiki-DFRobot.com (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://www.dfrobot.com/wiki/api.php?action=rsd">
+<link rel="copyright" href="https://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="DFRobot Electronic Product Wiki and Tutorial: Arduino and Robot Wiki-DFRobot.com Atom feed" href="https://www.dfrobot.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+<style type="text/css">
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{ display: none !important; }</style><script src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/load(3).php"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-PH_meter_SKU_SEN0161 rootpage-PH_meter_SKU_SEN0161 layout-navhead skin-chameleon action-view">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- navigation bar -->
+				<nav class="navbar navbar-default p-navbar" role="navigation" id="mw-navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mw-navigation-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button>
+
+							<!-- logo and main page link -->
+							<div id="p-logo" class="p-logo navbar-brand" role="banner">
+								<a><img src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/wiki.png" alt="DFRobot Electronic Product Wiki and Tutorial: Arduino and Robot Wiki-DFRobot.com"></a>
+							</div>
+
+
+						</div>
+
+						<div class="collapse navbar-collapse" id="mw-navigation-collapse"><ul class="nav navbar-nav">
+							<!-- navigation -->
+							<!-- empty -->
+							<!-- Product Manual -->
+							<li class="dropdown">
+								<a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#" class="dropdown-toggle" data-toggle="dropdown">Product Manual <b class="caret"></b></a>
+								
+								<ul class="dropdown-menu p-Product Manual" id="p-Product Manual">
+										<li id="n-DFR-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#DFR_Series">DFR Series</a></li>
+										<li id="n-SEN-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#SEN_Series">SEN Series</a></li>
+										<li id="n-DRI-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#DRI_Series">DRI Series</a></li>
+										<li id="n-TEL-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#TEL_Series">TEL Series</a></li>
+										<li id="n-FIT-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#FIT_Series">FIT Series</a></li>
+										<li id="n-ROB-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#ROB_Series">ROB Series</a></li>
+										<li id="n-SER-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#SER_Series">SER Series</a></li>
+										<li id="n-TOY-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#TOY_Series">TOY Series</a></li>
+										<li id="n-KIT-Series"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#KIT_Series">KIT Series</a></li>
+										<li id="n-Selector-Guide"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#Selector_Guide">Selector Guide</a></li>
+										<li id="n-Review"><a href="https://www.dfrobot.com/wiki/index.php/Review">Review</a></li>
+										<li id="n-Project"><a href="https://www.dfrobot.com/wiki/index.php/Project">Project</a></li>
+										<li id="n-Tutorial"><a href="https://www.dfrobot.com/wiki/index.php/Tutorial">Tutorial</a></li>
+										<li id="n-Assembly-Guide"><a href="https://www.dfrobot.com/wiki/index.php/Assembly_Guide">Assembly Guide</a></li>
+								</ul>
+							</li>
+							<!-- Tutorials -->
+							<li class="dropdown">
+								<a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#" class="dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+								
+								<ul class="dropdown-menu p-Tutorials" id="p-Tutorials">
+										<li id="n-User-Manual"><a href="https://www.dfrobot.com/wiki/index.php/Product_Manual#User_Manual">User Manual</a></li>
+										<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" rel="nofollow" title="The place to find out">Help</a></li>
+								</ul>
+							</li>
+							<!-- Menu -->
+							<li class="dropdown">
+								<a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+								
+								<ul class="dropdown-menu p-Menu" id="p-Menu">
+										<li id="n-HOME"><a href="https://www.dfrobot.com/">HOME</a></li>
+										<li id="n-STORE"><a href="https://www.dfrobot.com/store">STORE</a></li>
+										<li id="n-BLOG"><a href="https://www.dfrobot.com/blog">BLOG</a></li>
+										<li id="n-WIKI"><a href="https://www.dfrobot.com/wiki">WIKI</a></li>
+										<li id="n-COMMUNITY"><a href="https://www.dfrobot.com/blog">COMMUNITY</a></li>
+								</ul>
+							</li></ul>
+
+							<div class="navbar-right-aligned">
+								<!-- page tools -->
+								<ul class="navbar-tools navbar-nav">
+									<li class="navbar-tools-tools dropdown">
+										<a data-toggle="dropdown" class="dropdown-toggle" href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#" title="Page tools"><span>...</span></a>
+										<!-- Content navigation -->
+										<ul class="p-contentnavigation dropdown-menu" id="p-contentnavigation">
+											<!-- namespaces -->
+											<li id="ca-talk" class="new"><a href="https://www.dfrobot.com/wiki/index.php?title=Talk:PH_meter(SKU:_SEN0161)&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [alt-shift-t]" accesskey="t" class="new">Discussion</a></li>
+											<!-- views -->
+											<li id="ca-viewsource"><a href="https://www.dfrobot.com/wiki/index.php?title=PH_meter(SKU:_SEN0161)&amp;action=edit" title="This page is protected.
+You can view its source [alt-shift-e]" accesskey="e">View source</a></li>
+											<li id="ca-history"><a href="https://www.dfrobot.com/wiki/index.php?title=PH_meter(SKU:_SEN0161)&amp;action=history" title="Past revisions of this page [alt-shift-h]" accesskey="h">History</a></li>
+										</ul>
+									</li>
+								</ul>
+
+								<!-- search form -->
+								<div id="p-search" class="p-search navbar-form" role="search">
+									<form id="searchform" class="mw-search form-inline" action="https://www.dfrobot.com/wiki/index.php">
+										<input type="hidden" name="title" value="Special:Search">
+										<div class="input-group">
+											<input name="search" placeholder="Search" title="Search DFRobot Electronic Product Wiki and Tutorial: Arduino and Robot Wiki-DFRobot.com [alt-shift-f]" accesskey="f" id="searchInput" class="form-control" autocomplete="off">
+											<div class="input-group-btn">
+												<button value="Go" id="searchGoButton" name="go" title="Go to a page with this exact name if it exists" type="submit" class="searchGoButton btn btn-default"><span class="glyphicon glyphicon-share-alt"></span></button>
+												<button value="Search" id="mw-searchButton" name="fulltext" title="Search the pages for this text" type="submit" class="mw-searchButton btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+								<!-- personal tools -->
+								<ul class="navbar-tools navbar-nav">
+									<li class="dropdown navbar-tools-tools">
+										<a class="dropdown-toggle navbar-usernotloggedin" href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#" data-toggle="dropdown" title="You are not logged in."><span class="glyphicon glyphicon-user"></span></a>
+										<ul class="p-personal-tools dropdown-menu dropdown-menu-right">
+											<li id="pt-login"><a href="https://www.dfrobot.com/wiki/index.php?title=Special:UserLogin&amp;returnto=PH+meter%28SKU%3A+SEN0161%29" title="You are encouraged to log in; however, it is not mandatory [alt-shift-o]" accesskey="o">Log in</a></li>
+										</ul>
+									</li>
+								</ul>
+
+							</div> <!-- navbar-right-aligned -->
+						</div><!-- /.navbar-collapse -->
+					</div>
+				</nav>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- start the content area -->
+				<div id="content" class="mw-body"><a id="top"></a>
+					<div id="mw-indicators" class="mw-indicators"></div>
+					<div id="mw-js-message" style="display:none;"></div>
+					<div class="contentHeader">
+						<!-- title of the page -->
+						<h1 id="firstHeading" class="firstHeading">PH meter(SKU: SEN0161)</h1>
+						<!-- tagline; usually goes something like "From WikiName" primary purpose of this seems to be for printing to identify the source of the content -->
+						<div id="siteSub">From DFRobot Electronic Product Wiki and Tutorial: Arduino and Robot Wiki-DFRobot.com</div><div id="jump-to-nav" class="mw-jump">Jump to:<a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#mw-navigation">navigation</a>, <a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#p-search">search</a></div>
+					</div>
+					<div id="bodyContent">
+						<!-- body text -->
+
+						<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div class="thumb tright"><div class="thumbinner" style="width:302px;"><a href="https://www.dfrobot.com/product-1025.html"><img alt="" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/300px-DFR0161_picture.JPG" width="300" height="200" class="thumbimage" srcset="/wiki/images/thumb/5/54/DFR0161_picture.JPG/450px-DFR0161_picture.JPG 1.5x, /wiki/images/thumb/5/54/DFR0161_picture.JPG/600px-DFR0161_picture.JPG 2x"></a>  <div class="thumbcaption"><div class="magnify"><a href="https://www.dfrobot.com/wiki/index.php/File:DFR0161_picture.JPG" class="internal" title="Enlarge"></a></div><a class="external text" href="https://www.dfrobot.com/product-1025.html">Analog pH Meter Kit SKU: SEN0161</a></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a href="https://www.dfrobot.com/product-1110.html"><img alt="" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/300px-DFR0169_picture.JPG" width="300" height="200" class="thumbimage" srcset="/wiki/images/thumb/f/f4/DFR0169_picture.JPG/450px-DFR0169_picture.JPG 1.5x, /wiki/images/thumb/f/f4/DFR0169_picture.JPG/600px-DFR0169_picture.JPG 2x"></a>  <div class="thumbcaption"><div class="magnify"><a href="https://www.dfrobot.com/wiki/index.php/File:DFR0169_picture.JPG" class="internal" title="Enlarge"></a></div><a class="external text" href="https://www.dfrobot.com/product-1110.html">Analog pH Meter Kit SKU: SEN0169</a></div></div></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Specification"><span class="tocnumber">2</span> <span class="toctext">Specification</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Precautions"><span class="tocnumber">3</span> <span class="toctext">Precautions</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#pH_Electrode_Characteristics"><span class="tocnumber">4</span> <span class="toctext">pH Electrode Characteristics</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Usage"><span class="tocnumber">5</span> <span class="toctext">Usage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Connecting_Diagram"><span class="tocnumber">5.1</span> <span class="toctext">Connecting Diagram</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Method_1._Software_Calibration"><span class="tocnumber">5.2</span> <span class="toctext">Method 1. Software Calibration</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Method_2._Hardware_Calibration_through_potentiometer"><span class="tocnumber">5.3</span> <span class="toctext">Method 2. Hardware Calibration through potentiometer</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#FAQ"><span class="tocnumber">6</span> <span class="toctext">FAQ</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)#Documents"><span class="tocnumber">7</span> <span class="toctext">Documents</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>Need to measure water quality and other parameters but haven't got any low cost <a class="external text" href="https://www.dfrobot.com/category-68.html">pH meter</a>? Find it difficult to use with Arduino? Here comes an analog pH meter, specially designed for Arduino controllers and has built-in simple, convenient and practical connection and features. It has an LED which works as the Power Indicator, a BNC connector and PH2.0 sensor interface. You can just connect the pH sensor with BNC connector, and plug the PH2.0 interface into any analog input on <a class="external text" href="https://www.dfrobot.com/category-104.html">Arduino controller</a> to read pH value easily. 
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Specification">Specification</span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:352px;"><a href="https://www.dfrobot.com/wiki/index.php/File:Phsize.jpg" class="image"><img alt="" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/350px-Phsize.jpg" width="350" height="95" class="thumbimage" srcset="/wiki/images/thumb/e/ec/Phsize.jpg/525px-Phsize.jpg 1.5x, /wiki/images/thumb/e/ec/Phsize.jpg/700px-Phsize.jpg 2x"></a>  <div class="thumbcaption"><div class="magnify"><a href="https://www.dfrobot.com/wiki/index.php/File:Phsize.jpg" class="internal" title="Enlarge"></a></div>SEN0161 dimension</div></div></div>
+<ul><li> Module Power: 5.00V</li>
+<li> Circuit Board Size: 43mm×32mm</li>
+<li> pH Measuring Range: 0-14</li>
+<li> Measuring Temperature: 0-60 ℃</li>
+<li> Accuracy: ± 0.1pH (25 ℃)</li>
+<li> Response Time: ≤ 1min</li>
+<li> pH Sensor with BNC Connector</li>
+<li> PH2.0 Interface ( 3 foot patch )</li>
+<li> Gain Adjustment Potentiometer</li>
+<li> Power Indicator LED</li></ul>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Precautions">Precautions</span></h2>
+<ul><li>Before and after use of the pH electrode every time, you need to use (pure)water to clean it.</li></ul>
+<ul><li>The electrode plug should be kept clean and dry in case of short circuit.</li></ul>
+<ul><li><p style="color: red"> <b>Preservation</b>: Electrode reference preservation solution is the <b>3N KCL</b> solution.</p></li></ul>
+<ul><li>Measurement should be avoided staggered pollution between solutions, so as not to affect the accuracy of measurement.</li></ul>
+<ul><li>Electrode blub or sand core is defiled which will make PTS decline, slow response. So, it should be based on the characteristics of the pollutant, adapted to the cleaning solution, the electrode performance recovery.</li></ul>
+<ul><li>Electrode when in use, the ceramic sand core and liquid outlet rubber ring should be removed, in order to make salt bridge solution to maintain a certain velocity.</li></ul>
+<p><br>
+</p>
+<dl><dd><table style="background-color:#FCF8E3;color:#8A6D3B;">
+<tbody><tr>
+<td style="padding: 10px;">
+<p><b>NOTE</b>: <b>Differences between the probes, SEN0161 and SEN0169</b> 
+</p><p>Their usages/ specifications are almost the same. The differences locates at  
+</p>
+<ul><li> <b>Long-firing Operation</b>: SEN0169 supports, while SEN0161 NOT, i.e. you can not immerse SEN0161 in water for Continuous Testing. </li></ul>
+<ul><li> <b>Life Span</b>: In 25 ℃, pure water, do Continuous Testing with them both, SEN0169 can work two years, while SEN0161 can only last for 6 months. And just for reference, if put them in turbid, strongly acid and alkali solution, 25℃, the life span would drop to one year (SEN0169), 1 month(or shorter, SEN0161).
+<ul><li> Tempreture, pH, turbidity of the water effect the probe life span a lot. </li></ul></li></ul>
+<ul><li> <b>Waterproof</b>: You can immerse the whole probe SEN0169 into the water, while you can only immerse the front part of the probe SEN0161, the electrode glass bulb, into water, the rear part, from the white shell to the cable, MUST NOT be under water.</li></ul>
+<ul><li> <b>Strongly Acid and Alkali</b>: SEN0169 are preferred for strongly acid and alkali test. And if your testing range is usually within pH6~8, then SEN0161 is capable for that.</li></ul>
+</td></tr></tbody></table></dd></dl>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="pH_Electrode_Characteristics">pH Electrode Characteristics</span></h2>
+<p>The output of pH electrode is Millivolts, and the pH value of the relationship is shown as follows (25 ℃):
+</p><p><br>
+</p>
+<dl><dd><a href="https://www.dfrobot.com/wiki/index.php/File:Ph-mv.jpg" class="image"><img alt="Ph-mv.jpg" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/Ph-mv.jpg" width="580" height="206" class="thumbborder"></a></dd></dl>
+<p><br>
+</p>
+<dl><dd><table style="background-color:#FCF8E3;color:#8A6D3B;">
+<tbody><tr>
+<td style="padding: 10px;">
+<p><b>NOTE</b>: It is normal that if your reading is much different with the table since you are not reading from the electrode directly but from the voltage adapter, it has converted the original voltage (-5V ~ +5V) to Arduino compatible voltage, i.e. 0 ~ 5V. <a class="external text" href="http://www.dfrobot.com/forum/viewtopic.php?f=8&amp;t=1845#p9333">See the discussion on Forum.</a>
+</p>
+</td></tr></tbody></table></dd></dl>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Usage">Usage</span></h2>
+<h3><span class="mw-headline" id="Connecting_Diagram">Connecting Diagram</span></h3>
+<dl><dd><a href="https://www.dfrobot.com/wiki/index.php/File:PH_meter_connection1_(1).png" class="image"><img alt="PH meter connection1 (1).png" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/450px-PH_meter_connection1_(1).png" width="450" height="511" class="thumbborder" srcset="/wiki/images/thumb/e/e7/PH_meter_connection1_%281%29.png/675px-PH_meter_connection1_%281%29.png 1.5x, /wiki/images/e/e7/PH_meter_connection1_%281%29.png 2x"></a></dd></dl>
+<p><br>
+</p>
+<dl><dd><table style="background-color:#FCF8E3;color:#8A6D3B;">
+<tbody><tr>
+<td style="padding: 10px;">
+<p><b>NOTE</b>: 
+</p>
+<ol><li> Before you insert the pH probe into one solution from another, or after you finish using the sensor, you must wash the pH electrode with pure water everytime (distilled water is the best)!</li>
+<li> The closer <b>power supply</b> to +5.00V, the more accurate pH readings you could get.</li>
+<li> You have to immerse the pH probe into stationary solution instead of the running one to get relative stable pH readings. 
+<ul><li> How long should it be under the solution? It depends on the pH value, the closer to neutral solution (pH = 7.00), the longer it will take. As we tested in water pH = 6.0, the blue one costs 6 minutes, and in standard Acid/ Alkali (4.00/ 10.00) solutions, it only needs 10 seconds.</li></ul></li></ol>
+</td></tr></tbody></table></dd></dl>
+<p><br>
+</p>
+<h3><span class="mw-headline" id="Method_1._Software_Calibration">Method 1. Software Calibration</span></h3>
+<p>The software calibration is easier than the next part - Hardware Calibration through the Potentiometer. Because it writes the calibration values into Arduino's EEPROM, so you can calibrate once for all if you won't replace your Arduino. It uses mathematical method that to draw a line using two points, i.e. using the Acid standard solution, pH = 4.00 and alkaline pH = 10.00 or 9.18 to draw the linear relation between the voltage and the pH value.
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:302px;"><a href="https://www.dfrobot.com/wiki/index.php/File:Arduino_clear_EEPROM.png" class="image"><img alt="" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/300px-Arduino_clear_EEPROM.png" width="300" height="124" class="thumbimage" srcset="/wiki/images/thumb/5/51/Arduino_clear_EEPROM.png/450px-Arduino_clear_EEPROM.png 1.5x, /wiki/images/5/51/Arduino_clear_EEPROM.png 2x"></a>  <div class="thumbcaption"><div class="magnify"><a href="https://www.dfrobot.com/wiki/index.php/File:Arduino_clear_EEPROM.png" class="internal" title="Enlarge"></a></div>For NOTE 3. Arduino sample sketch "<b>EEPROM Clear</b>"</div></div></div><br><br>
+<dl><dd><table style="background-color:#FCF8E3;color:#8A6D3B;">
+<tbody><tr>
+<td style="padding: 10px;">
+<p><b>NOTE</b>: 
+</p>
+<ol><li> During the calibration (from step 4 to step 7), <b>power outage</b> should be avoided, or you will have to start over from step 4.</li>
+<li> Software Calibration has nothing to do with the <b>potentiometer</b> on the adapter. Especially after you finished the calibration, you should never adjust the potentiometer, or you should start over. Moreover, considering the mechanical vibration might interfere the potentiometer value, you could seal it by Hot Melt Adhesive. </li>
+<li> If you want to try Hardware Calibration, you'd better reset the EEPROM setting by uploading the Arduino IDE sample sketch "<b>EEPROM Clear</b>" as shown as the right hand picture.</li></ol>
+</td></tr></tbody></table></dd></dl>
+<p><br>
+</p>
+<dl><dd><b>Steps</b></dd></dl>
+<hr>
+<ol><li>Wiring the pH probe, pH meter adapter (the little PCB board) and Arduino UNO as the Diagram section above.</li>
+<li>Upload the sample code "Software Calibration" below to UNO.</li>
+<li>Open Serial Monitor, choose command format as “Both NL &amp; CR”and 115200. </li>
+<li>Send “<b>Calibration</b>” to enter Calibration Mode, and you will see “Enter Calibration Mode” directly.  <br><br><a href="https://www.dfrobot.com/wiki/index.php/File:SEN0161_enter_ca.png" class="image"><img alt="SEN0161 enter ca.png" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/SEN0161_enter_ca.png" width="643" height="91" class="thumbborder"></a><br><br></li>
+<li>Acid Calibration
+<ol><li> Wash your pH probe with pure water (distilled water is best) and dryer it in case of diluting the standard pH solution. Insert it into standard acid solution of pH = 4.0. Wait several seconds till the readings get relative stable.</li>
+<li> Enter “<b>acid:4.00</b>”(no bland space, lower case), and you will get “Acid Calibration Successful” notice. Then go on with Alkali Calibration.<br><br><a href="https://www.dfrobot.com/wiki/index.php/File:SEN0161_enter_send_ac.png" class="image"><img alt="SEN0161 enter send ac.png" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/SEN0161_enter_send_ac.png" width="643" height="64" class="thumbborder"></a><br><br></li></ol></li>
+<li> Alkali Calibration 
+<ol><li> Take out the pH probe out of the acid solution, CLEAN it again as you did in last step. After this, insert it into the standard alkali solution with pH = 10 or 9.18. Waiting for the stable readings  </li>
+<li> Enter “<b>alkali:10.00</b>”, and you will see “Alkali Calibration Successful”. <br><br><a href="https://www.dfrobot.com/wiki/index.php/File:SEN0161_enter_alkali.png" class="image"><img alt="SEN0161 enter alkali.png" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/SEN0161_enter_alkali.png" width="645" height="55" class="thumbborder"></a><br><br></li></ol></li>
+<li> Enter “exit” to finish calibration. You will see “Calibration Successful,Exit Calibration Mode”. <br><br><a href="https://www.dfrobot.com/wiki/index.php/File:SEN0161_cali_exit.png" class="image"><img alt="SEN0161 cali exit.png" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/SEN0161_cali_exit.png" width="640" height="51" class="thumbborder"></a><br><br></li>
+<li> Check if the pH meter was calibrated successfully with the solution pH = 4.00, 9.18, 10.00, if the readings are within the error of 0.1. Congrats! </li></ol>
+<p><br>
+</p>
+<ul class="gallery mw-gallery-packed-hover" align="center">
+		<li class="gallerybox" style="width: 351px;"><div style="width: 351px;">
+			<div class="thumb" style="width: 349px;"><div style="margin:0px auto;"><a href="https://www.dfrobot.com/wiki/index.php/File:SEN0161_check_cal_ac.png" class="image"><img alt="" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/SEN0161_check_cal_ac.png" width="349" height="400"></a></div></div>
+			<div class="gallerytextwrapper" style="width: 329px"><div class="gallerytext">
+<p>In Standard acid solution pH = 4.00
+</p>
+			</div></div>
+		</div></li>
+		<li class="gallerybox" style="width: 351px;"><div style="width: 351px;">
+			<div class="thumb" style="width: 349px;"><div style="margin:0px auto;"><a href="https://www.dfrobot.com/wiki/index.php/File:SEN0161_check_cal_alkali.png" class="image"><img alt="" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/SEN0161_check_cal_alkali.png" width="349" height="400"></a></div></div>
+			<div class="gallerytextwrapper" style="width: 329px"><div class="gallerytext">
+<p>In Standard alkali solution pH = 10.00
+</p>
+			</div></div>
+		</div></li>
+</ul>
+<p><br>
+</p>
+<dl><dd><b>Sample code: Software Calibration</b></dd></dl>
+<hr>
+<dl><dd><table style="400px;">
+<tbody><tr>
+<td style="padding: 20px;">
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span class="cm">/***************************************************</span>
+<span class="cm"> This example uses software solution to calibration the ph meter, not the potentiometer. So it is more easy to use and calibrate.</span>
+<span class="cm"> This is for SEN0161 and SEN0169.</span>
+<span class="cm"> </span>
+<span class="cm"> Created 2016-8-11</span>
+<span class="cm"> By youyou from DFrobot &lt;youyou.yu@dfrobot.com&gt;</span>
+<span class="cm">  </span>
+<span class="cm"> GNU Lesser General Public License.</span>
+<span class="cm"> See &lt;http://www.gnu.org/licenses/&gt; for details.</span>
+<span class="cm"> All above must be included in any redistribution</span>
+<span class="cm"> ****************************************************/</span>
+ 
+<span class="cm">/***********Notice and Troubleshooting***************</span>
+<span class="cm"> 1.Connection and Diagram can be found here  http://www.dfrobot.com/wiki/index.php/PH_meter%28SKU:_SEN0161%29</span>
+<span class="cm"> 2.This code is tested on Arduino Uno.</span>
+<span class="cm"> ****************************************************/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;EEPROM.h&gt;</span><span class="cp"></span>
+<span class="cp">#define EEPROM_write(address, p) {int i = 0; byte *pp = (byte*)&amp;(p);for(; i &lt; sizeof(p); i++) EEPROM.write(address+i, pp[i]);}</span>
+<span class="cp">#define EEPROM_read(address, p)  {int i = 0; byte *pp = (byte*)&amp;(p);for(; i &lt; sizeof(p); i++) pp[i]=EEPROM.read(address+i);}</span>
+
+<span class="cp">#define ReceivedBufferLength 20</span>
+<span class="kt">char</span> <span class="n">receivedBuffer</span><span class="p">[</span><span class="n">ReceivedBufferLength</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>   <span class="c1">// store the serial command</span>
+<span class="n">byte</span> <span class="n">receivedBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="cp">#define SCOUNT  30           </span><span class="c1">// sum of sample point</span>
+<span class="kt">int</span> <span class="n">analogBuffer</span><span class="p">[</span><span class="n">SCOUNT</span><span class="p">];</span>    <span class="c1">//store the sample voltage</span>
+<span class="kt">int</span> <span class="n">analogBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="cp">#define SlopeValueAddress 0     </span><span class="c1">// (slope of the ph probe)store at the beginning of the EEPROM. The slope is a float number,occupies 4 bytes.</span>
+<span class="cp">#define InterceptValueAddress (SlopeValueAddress+4) </span>
+<span class="kt">float</span> <span class="n">slopeValue</span><span class="p">,</span> <span class="n">interceptValue</span><span class="p">,</span> <span class="n">averageVoltage</span><span class="p">;</span>
+<span class="n">boolean</span> <span class="n">enterCalibrationFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="cp">#define SensorPin A0</span>
+<span class="cp">#define VREF 5000  </span><span class="c1">//for arduino uno, the ADC reference is the power(AVCC), that is 5000mV</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+  <span class="n">readCharacteristicValues</span><span class="p">();</span> <span class="c1">//read the slope and intercept of the ph probe</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">serialDataAvailable</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">byte</span> <span class="n">modeIndex</span> <span class="o">=</span> <span class="n">uartParse</span><span class="p">();</span>
+      <span class="n">phCalibration</span><span class="p">(</span><span class="n">modeIndex</span><span class="p">);</span>    <span class="c1">// If the correct calibration command is received, the calibration function should be called.</span>
+      <span class="n">EEPROM_read</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="p">,</span> <span class="n">slopeValue</span><span class="p">);</span>     <span class="c1">// After calibration, the new slope and intercept should be read ,to update current value.</span>
+      <span class="n">EEPROM_read</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="p">,</span> <span class="n">interceptValue</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+   <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sampleTimepoint</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="o">-</span><span class="n">sampleTimepoint</span><span class="o">&gt;</span><span class="mi">40U</span><span class="p">)</span>
+   <span class="p">{</span>
+     <span class="n">sampleTimepoint</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+     <span class="n">analogBuffer</span><span class="p">[</span><span class="n">analogBufferIndex</span><span class="p">]</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">SensorPin</span><span class="p">)</span><span class="o">/</span><span class="mf">1024.0</span><span class="o">*</span><span class="n">VREF</span><span class="p">;</span>    <span class="c1">//read the voltage and store into the buffer,every 40ms</span>
+     <span class="n">analogBufferIndex</span><span class="o">++</span><span class="p">;</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">analogBufferIndex</span> <span class="o">==</span> <span class="n">SCOUNT</span><span class="p">)</span> 
+         <span class="n">analogBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+     <span class="n">averageVoltage</span> <span class="o">=</span> <span class="n">getMedianNum</span><span class="p">(</span><span class="n">analogBuffer</span><span class="p">,</span><span class="n">SCOUNT</span><span class="p">);</span>   <span class="c1">// read the stable value by the median filtering algorithm</span>
+   <span class="p">}</span>
+   
+   <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">printTimepoint</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="o">-</span><span class="n">printTimepoint</span><span class="o">&gt;</span><span class="mi">1000U</span><span class="p">)</span>
+   <span class="p">{</span>
+     <span class="n">printTimepoint</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">enterCalibrationFlag</span><span class="p">)</span>             <span class="c1">// in calibration mode, print the voltage to user, to watch the stability of voltage</span>
+     <span class="p">{</span>
+       <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Voltage:"</span><span class="p">);</span>
+       <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">averageVoltage</span><span class="p">);</span>
+       <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"mV"</span><span class="p">);</span>
+     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"pH:"</span><span class="p">);</span>              <span class="c1">// in normal mode, print the ph value to user</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">averageVoltage</span><span class="o">/</span><span class="mf">1000.0</span><span class="o">*</span><span class="n">slopeValue</span><span class="o">+</span><span class="n">interceptValue</span><span class="p">);</span>
+     <span class="p">}</span>
+   <span class="p">}</span>   
+<span class="p">}</span>
+
+<span class="n">boolean</span> <span class="nf">serialDataAvailable</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">receivedChar</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">receivedTimeOut</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> 
+  <span class="p">{</span>   
+    <span class="k">if</span> <span class="p">(</span><span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">receivedTimeOut</span> <span class="o">&gt;</span> <span class="mi">1000U</span><span class="p">)</span> 
+    <span class="p">{</span>
+      <span class="n">receivedBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">memset</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span><span class="mi">0</span><span class="p">,(</span><span class="n">ReceivedBufferLength</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">receivedTimeOut</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+    <span class="n">receivedChar</span> <span class="o">=</span> <span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">receivedChar</span> <span class="o">==</span> <span class="sc">'\n'</span> <span class="o">||</span> <span class="n">receivedBufferIndex</span><span class="o">==</span><span class="n">ReceivedBufferLength</span><span class="p">){</span>
+		<span class="n">receivedBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">strupr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="n">receivedBuffer</span><span class="p">[</span><span class="n">receivedBufferIndex</span><span class="p">]</span> <span class="o">=</span> <span class="n">receivedChar</span><span class="p">;</span>
+      <span class="n">receivedBufferIndex</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">byte</span> <span class="nf">uartParse</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">byte</span> <span class="n">modeIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">strstr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span> <span class="s">"CALIBRATION"</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> 
+      <span class="n">modeIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strstr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span> <span class="s">"EXIT"</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> 
+      <span class="n">modeIndex</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strstr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span> <span class="s">"ACID:"</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>   
+      <span class="n">modeIndex</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>  
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strstr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span> <span class="s">"ALKALI:"</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+      <span class="n">modeIndex</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">modeIndex</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">phCalibration</span><span class="p">(</span><span class="n">byte</span> <span class="n">mode</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">receivedBufferPtr</span><span class="p">;</span>
+    <span class="k">static</span> <span class="n">byte</span> <span class="n">acidCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">alkaliCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">static</span> <span class="kt">float</span> <span class="n">acidValue</span><span class="p">,</span><span class="n">alkaliValue</span><span class="p">;</span>
+    <span class="k">static</span> <span class="kt">float</span> <span class="n">acidVoltage</span><span class="p">,</span><span class="n">alkaliVoltage</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">acidValueTemp</span><span class="p">,</span><span class="n">alkaliValueTemp</span><span class="p">,</span><span class="n">newSlopeValue</span><span class="p">,</span><span class="n">newInterceptValue</span><span class="p">;</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">enterCalibrationFlag</span><span class="p">)</span>
+         <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Command Error"</span><span class="p">));</span>
+      <span class="k">break</span><span class="p">;</span>
+      
+      <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+      <span class="n">receivedBufferPtr</span><span class="o">=</span><span class="n">strstr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span> <span class="s">"CALIBRATION"</span><span class="p">);</span>
+      <span class="n">enterCalibrationFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">acidCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">alkaliCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Enter Calibration Mode"</span><span class="p">));</span>
+      <span class="k">break</span><span class="p">;</span>
+     
+      <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">enterCalibrationFlag</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">receivedBufferPtr</span><span class="o">=</span><span class="n">strstr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span> <span class="s">"ACID:"</span><span class="p">);</span>
+          <span class="n">receivedBufferPtr</span><span class="o">+=</span><span class="n">strlen</span><span class="p">(</span><span class="s">"ACID:"</span><span class="p">);</span>
+          <span class="n">acidValueTemp</span> <span class="o">=</span> <span class="n">strtod</span><span class="p">(</span><span class="n">receivedBufferPtr</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">((</span><span class="n">acidValueTemp</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">acidValueTemp</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">))</span>        <span class="c1">//typical ph value of acid standand buffer solution should be 4.00</span>
+          <span class="p">{</span>
+             <span class="n">acidValue</span> <span class="o">=</span> <span class="n">acidValueTemp</span><span class="p">;</span>
+             <span class="n">acidVoltage</span> <span class="o">=</span> <span class="n">averageVoltage</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">;</span>        <span class="c1">// mV -&gt; V</span>
+             <span class="n">acidCalibrationFinish</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+             <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Acid Calibration Successful"</span><span class="p">));</span>
+           <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+             <span class="n">acidCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+             <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Acid Value Error"</span><span class="p">));</span>
+           <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+ 
+       <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+       <span class="k">if</span><span class="p">(</span><span class="n">enterCalibrationFlag</span><span class="p">)</span>
+       <span class="p">{</span>
+           <span class="n">receivedBufferPtr</span><span class="o">=</span><span class="n">strstr</span><span class="p">(</span><span class="n">receivedBuffer</span><span class="p">,</span> <span class="s">"ALKALI:"</span><span class="p">);</span>
+           <span class="n">receivedBufferPtr</span><span class="o">+=</span><span class="n">strlen</span><span class="p">(</span><span class="s">"ALKALI:"</span><span class="p">);</span>
+           <span class="n">alkaliValueTemp</span> <span class="o">=</span> <span class="n">strtod</span><span class="p">(</span><span class="n">receivedBufferPtr</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+           <span class="k">if</span><span class="p">((</span><span class="n">alkaliValueTemp</span><span class="o">&gt;</span><span class="mi">8</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">alkaliValueTemp</span><span class="o">&lt;</span><span class="mi">11</span><span class="p">))</span>        <span class="c1">//typical ph value of alkali standand buffer solution should be 9.18 or 10.01</span>
+           <span class="p">{</span>
+                 <span class="n">alkaliValue</span> <span class="o">=</span> <span class="n">alkaliValueTemp</span><span class="p">;</span>
+                 <span class="n">alkaliVoltage</span> <span class="o">=</span> <span class="n">averageVoltage</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">;</span>
+                 <span class="n">alkaliCalibrationFinish</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                 <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Alkali Calibration Successful"</span><span class="p">));</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+               <span class="n">alkaliCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+               <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Alkali Value Error"</span><span class="p">));</span>
+            <span class="p">}</span>
+       <span class="p">}</span>
+       <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">enterCalibrationFlag</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">acidCalibrationFinish</span> <span class="o">&amp;&amp;</span> <span class="n">alkaliCalibrationFinish</span><span class="p">)</span>
+            <span class="p">{</span>
+              <span class="n">newSlopeValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">acidValue</span><span class="o">-</span><span class="n">alkaliValue</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">acidVoltage</span> <span class="o">-</span> <span class="n">alkaliVoltage</span><span class="p">);</span>
+              <span class="n">EEPROM_write</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="p">,</span> <span class="n">newSlopeValue</span><span class="p">);</span>
+              <span class="n">newInterceptValue</span> <span class="o">=</span> <span class="n">acidValue</span> <span class="o">-</span> <span class="p">(</span><span class="n">slopeValue</span><span class="o">*</span><span class="n">acidVoltage</span><span class="p">);</span>
+              <span class="n">EEPROM_write</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="p">,</span> <span class="n">newInterceptValue</span><span class="p">);</span>
+              <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Calibration Successful"</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Calibration Failed"</span><span class="p">));</span>       
+            <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">",Exit Calibration Mode"</span><span class="p">));</span>
+            <span class="n">acidCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">alkaliCalibrationFinish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">enterCalibrationFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">getMedianNum</span><span class="p">(</span><span class="kt">int</span> <span class="n">bArray</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">iFilterLen</span><span class="p">)</span> 
+<span class="p">{</span>
+      <span class="kt">int</span> <span class="n">bTab</span><span class="p">[</span><span class="n">iFilterLen</span><span class="p">];</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">byte</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">iFilterLen</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="p">{</span>
+	  <span class="n">bTab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">bArray</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="p">}</span>
+      <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">bTemp</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">iFilterLen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> 
+      <span class="p">{</span>
+	  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">iFilterLen</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> 
+          <span class="p">{</span>
+	    <span class="k">if</span> <span class="p">(</span><span class="n">bTab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">bTab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> 
+            <span class="p">{</span>
+		<span class="n">bTemp</span> <span class="o">=</span> <span class="n">bTab</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	        <span class="n">bTab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">bTab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+		<span class="n">bTab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">bTemp</span><span class="p">;</span>
+	     <span class="p">}</span>
+	  <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">iFilterLen</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="n">bTemp</span> <span class="o">=</span> <span class="n">bTab</span><span class="p">[(</span><span class="n">iFilterLen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">];</span>
+      <span class="k">else</span>
+	<span class="n">bTemp</span> <span class="o">=</span> <span class="p">(</span><span class="n">bTab</span><span class="p">[</span><span class="n">iFilterLen</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">bTab</span><span class="p">[</span><span class="n">iFilterLen</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">bTemp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">readCharacteristicValues</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">EEPROM_read</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="p">,</span> <span class="n">slopeValue</span><span class="p">);</span>
+    <span class="n">EEPROM_read</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="p">,</span> <span class="n">interceptValue</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span> <span class="o">&amp;&amp;</span> <span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span> <span class="o">&amp;&amp;</span> <span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span> <span class="o">&amp;&amp;</span> <span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">slopeValue</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">;</span>   <span class="c1">// If the EEPROM is new, the recommendatory slope is 3.5.</span>
+      <span class="n">EEPROM_write</span><span class="p">(</span><span class="n">SlopeValueAddress</span><span class="p">,</span> <span class="n">slopeValue</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span> <span class="o">&amp;&amp;</span> <span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span> <span class="o">&amp;&amp;</span> <span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span> <span class="o">&amp;&amp;</span> <span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">==</span><span class="mh">0xFF</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">interceptValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// If the EEPROM is new, the recommendatory intercept is 0.</span>
+      <span class="n">EEPROM_write</span><span class="p">(</span><span class="n">InterceptValueAddress</span><span class="p">,</span> <span class="n">interceptValue</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></dd></dl>
+<p><br>
+</p>
+<h3><span class="mw-headline" id="Method_2._Hardware_Calibration_through_potentiometer">Method 2. Hardware Calibration through potentiometer</span></h3>
+<p>If you've taken the Method 1. Software Calibration, you can ignore this part.
+</p>
+<ol><li> Connect according to the graphic, that is, the pH electrode is connected to the BNC connector on the pH meter board, and then use the connection lines, the pH meter board is connected to the analog port 0 of the Arduino controller. When the Arduino controller gets power, you will see the blue LED on board is on.</li>
+<li> Upload the sample code to the Arduino controller.</li>
+<li> Put the pH electrode into the standard solution whose pH value is 7.00, or directly short circuit the input of the BNC connector. Open the serial monitor of the Arduino IDE, you can see the pH value printed to it, and the error does not exceed 0.3. Record the pH value printed, then compared with 7.00, and the difference should be changed into the "Offset" in the sample code. For example, the pH value printed is 6.88, so the difference is 0.12. You should change the <b># define Offset 0.00</b> into <b># define Offset 0.12</b> in the sample code.</li>
+<li> <b>Fine adjustment</b>
+<ul><li> <b>For Acid solution:</b> Put the pH electrode into the pH standard solution whose value is 4.00. Then wait about a minute, adjust the Gain Potential device, let the value stabilise at around 4.00. At this time, the acidic calibration has been completed and you can measure the pH value of an acidic solution.</li>
+<li> <b>For Alkaline solution:</b> According to the linear characteristics of pH electrode itself, after the above calibration, you can directly measure the pH value of the <b>alkaline</b> solution, but if you want to get a better accuracy, you can recalibrate it with the standard solution, pH = 9.18. Also adjust the gain potential device, let the value stabilise at around 9.18. After this calibration, you can measure the pH value of the alkaline solution.</li></ul></li></ol>
+<p><br>
+</p>
+<dl><dd><b>Sample Code for Hardware Calibration</b></dd></dl>
+<hr>
+<dl><dd><table style="400px;">
+<tbody><tr>
+<td style="padding: 20px;">
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span class="cm">/*</span>
+<span class="cm"> # This sample code is used to test the pH meter V1.0.</span>
+<span class="cm"> # Editor : YouYou</span>
+<span class="cm"> # Ver    : 1.0</span>
+<span class="cm"> # Product: analog pH meter</span>
+<span class="cm"> # SKU    : SEN0161</span>
+<span class="cm">*/</span>
+<span class="cp">#define SensorPin A0            </span><span class="c1">//pH meter Analog output to Arduino Analog Input 0</span>
+<span class="cp">#define Offset 0.00            </span><span class="c1">//deviation compensate</span>
+<span class="cp">#define LED 13</span>
+<span class="cp">#define samplingInterval 20</span>
+<span class="cp">#define printInterval 800</span>
+<span class="cp">#define ArrayLenth  40    </span><span class="c1">//times of collection</span>
+<span class="kt">int</span> <span class="n">pHArray</span><span class="p">[</span><span class="n">ArrayLenth</span><span class="p">];</span>   <span class="c1">//Store the average value of the sensor feedback</span>
+<span class="kt">int</span> <span class="n">pHArrayIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>    
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>  
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>  
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"pH meter experiment!"</span><span class="p">);</span>    <span class="c1">//Test the serial monitor</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">samplingTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">printTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+  <span class="k">static</span> <span class="kt">float</span> <span class="n">pHValue</span><span class="p">,</span><span class="n">voltage</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="o">-</span><span class="n">samplingTime</span> <span class="o">&gt;</span> <span class="n">samplingInterval</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">pHArray</span><span class="p">[</span><span class="n">pHArrayIndex</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">analogRead</span><span class="p">(</span><span class="n">SensorPin</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">pHArrayIndex</span><span class="o">==</span><span class="n">ArrayLenth</span><span class="p">)</span><span class="n">pHArrayIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="n">voltage</span> <span class="o">=</span> <span class="n">avergearray</span><span class="p">(</span><span class="n">pHArray</span><span class="p">,</span> <span class="n">ArrayLenth</span><span class="p">)</span><span class="o">*</span><span class="mf">5.0</span><span class="o">/</span><span class="mi">1024</span><span class="p">;</span>
+      <span class="n">pHValue</span> <span class="o">=</span> <span class="mf">3.5</span><span class="o">*</span><span class="n">voltage</span><span class="o">+</span><span class="n">Offset</span><span class="p">;</span>
+      <span class="n">samplingTime</span><span class="o">=</span><span class="n">millis</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">printTime</span> <span class="o">&gt;</span> <span class="n">printInterval</span><span class="p">)</span>   <span class="c1">//Every 800 milliseconds, print a numerical, convert the state of the LED indicator</span>
+  <span class="p">{</span>
+	<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Voltage:"</span><span class="p">);</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"    pH value: "</span><span class="p">);</span>
+	<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">pHValue</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">LED</span><span class="p">)</span><span class="o">^</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">printTime</span><span class="o">=</span><span class="n">millis</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">double</span> <span class="nf">avergearray</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">number</span><span class="p">){</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">max</span><span class="p">,</span><span class="n">min</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">avg</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">amount</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">number</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">){</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Error number for the array to avraging!/n"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">number</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">){</span>   <span class="c1">//less than 5, calculated directly statistics</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">number</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">amount</span><span class="o">+=</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">avg</span> <span class="o">=</span> <span class="n">amount</span><span class="o">/</span><span class="n">number</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">avg</span><span class="p">;</span>
+  <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]){</span>
+      <span class="n">min</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="n">max</span><span class="o">=</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="n">min</span><span class="o">=</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="n">max</span><span class="o">=</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">number</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">min</span><span class="p">){</span>
+        <span class="n">amount</span><span class="o">+=</span><span class="n">min</span><span class="p">;</span>        <span class="c1">//arr&lt;min</span>
+        <span class="n">min</span><span class="o">=</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">max</span><span class="p">){</span>
+          <span class="n">amount</span><span class="o">+=</span><span class="n">max</span><span class="p">;</span>    <span class="c1">//arr&gt;max</span>
+          <span class="n">max</span><span class="o">=</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+          <span class="n">amount</span><span class="o">+=</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">//min&lt;=arr&lt;=max</span>
+        <span class="p">}</span>
+      <span class="p">}</span><span class="c1">//if</span>
+    <span class="p">}</span><span class="c1">//for</span>
+    <span class="n">avg</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">amount</span><span class="o">/</span><span class="p">(</span><span class="n">number</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+  <span class="p">}</span><span class="c1">//if</span>
+  <span class="k">return</span> <span class="n">avg</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></dd></dl>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="FAQ">FAQ</span></h2>
+<table style="width: 100%;background-color:#E1FDDF;color:#009000;">
+<tbody><tr>
+<td style="padding: 5px;">
+<p><b>Q1. </b> My PH sensor readings are not correct, what did I miss? Or the module is defective?
+</p>
+</td></tr></tbody></table>
+<dl><dd><b>A. </b>1. Check if the pH sensor circuit board is good? <a class="external text" href="http://www.dfrobot.com/forum/viewtopic.php?f=8&amp;t=1523">Read on the Forum.</a> or <a class="external text" href="https://www.dfrobot.com/wiki/index.php?title=PH_meter_self-checking">on wiki</a> for the steps. During the transport, there might be crash causing the probe head cracked, please check if the probe is good or not.
+<dl><dd>2. If you don't use Arduino as the controller, then please check your ADC module that whether it converts the 5V analog input to 1024, if it is 4096(or other byte), please re-determine the equation in the code.</dd></dl></dd></dl>
+<p><br>
+</p>
+<table style="width: 100%;background-color:#E1FDDF;color:#009000;">
+<tbody><tr>
+<td style="padding: 5px;">
+<p><b>Q2. </b> Big fluctuations in ph meter readings. When I make measurements in a glass, I have correct, stable reading. But when I put it inside the aquarium with the pumping system working, the easurement varies even more than a degree, and it's not stable, if I swicth off the pump the given value doesn´t oscilate anymore.
+</p>
+</td></tr></tbody></table>
+<dl><dd><b>A. </b> There should be NO working electrical device in the container. Any tiny leakage of electricity will cause the probe working error. Especially, many people bought the <a class="external text" href="https://www.dfrobot.com/product-1123.html">EC meter</a> and put it into the same tank for the test, but then the pH meter cannot work well anymore. Please seperate them into different containers, or turning off the EC meter when using the pH meter.</dd></dl>
+<p><br>
+</p>
+<table style="width: 100%;background-color:#E1FDDF;color:#009000;">
+<tbody><tr>
+<td style="padding: 5px;">
+<p><b>Q3. </b>May I know the Maximum range different if we do not calibrate the pH meter.
+</p>
+</td></tr></tbody></table>
+<dl><dd><b>A. </b>The maximum range differs from probe, you have to calibrate it before use if the pH probe was kept long.</dd></dl>
+<p><br>
+</p>
+<table style="width: 100%;background-color:#E1FDDF;color:#009000;">
+<tbody><tr>
+<td style="padding: 5px;">
+<p><b>Q4. </b> I would just like to ask if your pH sensor can be connect to any micro controller aside from arduino. Would it be compatible with a raspberry pi? Thank You!
+</p>
+</td></tr></tbody></table>
+<dl><dd><b>A. </b>Yes, it can be used on any device as long as it could give 5V power supply and accept 5V analog signal, but as the Rasp pi is only compatible with 3.3V sensor, so an expansion shield is suggested to use with (please make sure which kind of Pi you use)</dd></dl>
+<p><br>
+</p>
+<dl><dd><table style="background-color:#FCF8E3;color:#8A6D3B;000;">
+<tbody><tr>
+<td style="padding: 10px;">
+<p>For any questions and more cool ideas to share, please visit <a class="external text" href="http://www.dfrobot.com/forum/"><b>DFRobot Forum</b></a>                                
+</p>
+</td></tr></tbody></table></dd></dl>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Documents">Documents</span></h2>
+<p><a rel="nofollow" class="external text" href="http://dfrobot.com/wiki/index.php?title=PH_meter_temperature_compensation">PH meter temperature compensation guide</a><br>
+<a class="external text" href="https://www.dfrobot.com/wiki/index.php?title=PH_meter_self-checking">PH meter self-checking guide</a><br>
+<a class="external text" href="http://www.dfrobot.com/image/data/SEN0161/pH%20meter%20V1.0%20SCH.pdf">Schematic</a><br>
+<a class="external text" href="http://www.dfrobot.com/image/data/SEN0161/ph%20meter%20V1.0%20layout.pdf">PCB Design layout</a><br>
+<a class="external text" href="http://www.dfrobot.com/image/data/SEN0161/PH%20composite%20electrode%20manual.pdf">pH Electrode Manual</a>, SEN0161 is E-201 in this manual, and SEN0169 is another band which share the same character with SEN0161. <br>
+<a class="external text" href="http://www.dfrobot.com/image/data/SEN0161/DFRobot%20SEN0161.zip">Zips For All Above</a><br>
+<a href="https://www.dfrobot.com/wiki/index.php/Industrial_pH_electrode(SKU:FIT0348)" title="Industrial pH electrode(SKU:FIT0348)">Industrial pH electrode(SKU:FIT0348)</a><br>
+</p><p><br>
+</p><p><a href="http://www.dfrobot.com/"><img alt="DFshopping car1.png" src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/DFshopping_car1.png" width="30" height="28"></a> Get it from <a class="external text" href="https://www.dfrobot.com/product-1025.html"><b><u>Gravity: Analog pH Sensor / Meter Kit For Arduino</u></b></a><br>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20170527062529
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.060 seconds
+Real time usage: 0.459 seconds
+Preprocessor visited node count: 69/1000000
+Preprocessor generated node count: 114/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key df_wikiv3-wk:pcache:idhash:1836-0!*!0!!en!5!* and timestamp 20170527062528 and revision id 38154
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="https://www.dfrobot.com/wiki/index.php?title=PH_meter(SKU:_SEN0161)&amp;oldid=38154">https://www.dfrobot.com/wiki/index.php?title=PH_meter(SKU:_SEN0161)&amp;oldid=38154</a>"</div>
+
+						<!-- end body text -->
+					</div>
+					<!-- category links -->
+					<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="https://www.dfrobot.com/wiki/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="https://www.dfrobot.com/wiki/index.php/Category:Product_Manual" title="Category:Product Manual">Product Manual</a></li><li><a href="https://www.dfrobot.com/wiki/index.php/Category:SEN_Series" title="Category:SEN Series">SEN Series</a></li><li><a href="https://www.dfrobot.com/wiki/index.php/Category:Sensors" title="Category:Sensors">Sensors</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Hidden categories: <ul><li><a href="https://www.dfrobot.com/wiki/index.php/Category:Source" title="Category:Source">Source</a></li><li><a href="https://www.dfrobot.com/wiki/index.php/Category:Diagram" title="Category:Diagram">Diagram</a></li></ul></div></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- Tools-->
+				<nav class="navbar navbar-default p-tb " id="p-tb">
+					<ul class="nav navbar-nav small">
+						<li id="t-whatlinkshere"><a href="https://www.dfrobot.com/wiki/index.php/Special:WhatLinksHere/PH_meter(SKU:_SEN0161)" title="A list of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="https://www.dfrobot.com/wiki/index.php/Special:RecentChangesLinked/PH_meter(SKU:_SEN0161)" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+						<li id="t-specialpages"><a href="https://www.dfrobot.com/wiki/index.php/Special:SpecialPages" title="A list of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+						<li id="t-print"><a href="https://www.dfrobot.com/wiki/index.php?title=PH_meter(SKU:_SEN0161)&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="https://www.dfrobot.com/wiki/index.php?title=PH_meter(SKU:_SEN0161)&amp;oldid=38154" title="Permanent link to this revision of the page">Permanent link</a></li>
+						<li id="t-info"><a href="https://www.dfrobot.com/wiki/index.php?title=PH_meter(SKU:_SEN0161)&amp;action=info" title="More information about this page">Page information</a></li>
+						
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- footer links -->
+				<ul class="footer-info list-unstyled small" id="footer-info">
+					<!-- info -->
+					<li> This page was last modified on 25 May 2017, at 06:09.</li>
+					<li>Content is available under <a class="external" rel="nofollow" href="https://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 or later</a> unless otherwise noted.</li>
+				</ul>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<!-- places -->
+				<ul class="list-inline footer-places " id="footer-places">
+					<li><small><a href="https://www.dfrobot.com/wiki/index.php/Robot_Wiki:Privacy_policy" title="Robot Wiki:Privacy policy">Privacy policy</a></small></li>
+					<li><small><a href="https://www.dfrobot.com/wiki/index.php/Robot_Wiki:About" title="Robot Wiki:About">About DFRobot Electronic Product Wiki and Tutorial: Arduino and Robot Wiki-DFRobot.com</a></small></li>
+					<li><small><a href="https://www.dfrobot.com/wiki/index.php/Robot_Wiki:General_disclaimer" title="Robot Wiki:General disclaimer">Disclaimers</a></small></li>
+				</ul>
+
+			</div>
+			<div class="col-lg-6">
+				<!-- footer icons -->
+				<ul class="list-inline pull-right footer-icons " id="footer-icons">
+					<!-- copyright -->
+					<li><a href="https://www.gnu.org/copyleft/fdl.html"><img src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/gnu-fdl.png" alt="GNU Free Documentation License 1.3 or later" width="88" height="31"></a></li>
+					<!-- poweredby -->
+					<li><a href="https://www.mediawiki.org/"><img src="./PH meter(SKU_ SEN0161) - DFRobot Electronic Product Wiki and Tutorial_ Arduino and Robot Wiki-DFRobot.com_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"></a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div><script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.page.gallery","mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.visualEditor.targetLoader","ext.bootstrap.scripts"]);});</script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-16770142-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript" src="https://analytics.example.com/tracking.js"></script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":44});});</script>
+<a accesskey="v" href="https://www.dfrobot.com/wiki/index.php/PH_meter(SKU:_SEN0161)?veaction=edit" style="display: none;"></a><div class="suggestions" style="display: none; font-size: 14px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>
