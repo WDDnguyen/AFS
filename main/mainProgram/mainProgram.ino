@@ -56,11 +56,40 @@ void disableLEDRows(){
   digitalWrite(LED_ROW_2, LOW);
 }
 
+void setAirPump(){
+  digitalWrite(AIR_PUMP,HIGH);
+}
+void disableAirPump(){
+  digitalWrite(AIR_PUMP,LOW);
+}
+
+void setWaterPump(){
+  digitalWrite(WATER_PUMP,HIGH);
+}
+
+void disableWaterPump(){
+  digitalWrite(WATER_PUMP,LOW);
+}
+
+void setSolutionPump(){
+  digitalWrite(SOLUTION_PUMP,HIGH);
+}
+
+void disableSolutionPump(){
+  digitalWrite(SOLUTION_PUMP,LOW);
+}
+
 void loop()
 {
     pollTempSensor();
     setLEDRows();
+    setWaterPump();
+    setSolutionPump();
+    setAirPump();
     delay(1000);
     disableLEDRows();
+    disableWaterPump();
+    disableSolutionPump();
+    disableAirPump();
     delay(1000);
 }
