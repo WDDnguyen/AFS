@@ -3,32 +3,37 @@
 dht DHT;
 
 //Constants
-//DC
-#define DHT22_PIN 2
-#define LED_ROW_1 3
-#define LED_ROW_2 4
-#define SERVO_MOTOR_1 5
-#define SERVO_MOTOR_2 6
-#define RELAY1_IN_1 7
-#define RELAY1_IN_2 8
-#define RELAY2_IN_1 9
-#define RELAY2_IN_2 10
-#define AIR_PUMP 11
-#define SOLUTION_PUMP 12
-#define WATER_PUMP 13 
+#define DHT22_PIN       2   // Temperature and Humidity Sensor
+#define LED_ROW_1       3   // First row of each LED Strip
+#define LED_ROW_2       4   // Second row of each LED Strip
+#define PIPE_SERVO_1    5    
+#define PIPE_SERVO_2    6     
+#define RELAY1_IN_1     7   // Mix tank pump        
+#define RELAY1_IN_2     8   // Heater
+#define RELAY2_IN_1     9   // Fan
+#define RELAY2_IN_2     10  // Dripping tank pump
+#define AIR_PUMP        11  
+#define SOLUTION_PUMP   12
+#define WATER_PUMP      13 
 
 //Variables
-float hum;  //Stores humidity value
-float temp; //Stores temperature value
-int chk;
-String humidity;
-String temperature;
+float hum;          //Stores humidity value
+float temp;         //Stores temperature value
+int chk;            //Read sensor value
+String humidity;    // display humidity
+String temperature; // display temperature
 
 void setup()
 {
     Serial.begin(9600);
     pinMode(LED_ROW_1, OUTPUT);
     pinMode(LED_ROW_2, OUTPUT);
+    pinMode(PIPE_SERVO_1, OUTPUT);
+    pinMode(PIPE_SERVO_2, OUTPUT);
+    pinMode(RELAY1_IN_1, OUTPUT);
+    pinMode(RELAY1_IN_2, OUTPUT);
+    pinMode(RELAY2_IN_1, OUTPUT);
+    pinMode(RELAY2_IN_2, OUTPUT);
     pinMode(AIR_PUMP, OUTPUT);
     pinMode(SOLUTION_PUMP, OUTPUT);
     pinMode(WATER_PUMP, OUTPUT);
@@ -43,7 +48,7 @@ void pollTempSensor(){
     humidity = String(hum);
     temperature = String(temp);
     Serial.print("Humidity: " + humidity + " %, Temperature : " + temperature + " Celsius \n");
-    delay(2000); //Delay 2 sec.
+    //delay(2000); //Delay 2 sec.
 }
 
 void setLEDRows(){
@@ -79,6 +84,30 @@ void disableSolutionPump(){
   digitalWrite(SOLUTION_PUMP,LOW);
 }
 
+void setPipeMotors(){
+  digitalWrite(PIPE_SERVO_1,HIGH);
+  digitalWrite(PIPE_SERVO_2,HIGH);
+}
+
+void disablePipeMotors(){
+  digitalWrite(PIPE_SERVO_1, LOW);
+  digitalWrite(PIPE_SERVO_2, LOW);
+}
+
+void setRelays(){
+  digitalWrite(RELAY1_IN_1, HIGH);
+  digitalWrite(RELAY1_IN_2, HIGH);
+  digitalWrite(RELAY2_IN_1, HIGH);
+  digitalWrite(RELAY2_IN_2, HIGH);
+}
+
+void disableRelays(){
+  digitalWrite(RELAY1_IN_1, LOW);
+  digitalWrite(RELAY1_IN_2, LOW);
+  digitalWrite(RELAY2_IN_1, LOW);
+  digitalWrite(RELAY2_IN_2, LOW);
+}
+
 void loop()
 {
     pollTempSensor();
@@ -86,10 +115,14 @@ void loop()
     setWaterPump();
     setSolutionPump();
     setAirPump();
+    setPipeMotors();
+    setRelays();
     delay(1000);
+    disablePipeMotors();
     disableLEDRows();
     disableWaterPump();
     disableSolutionPump();
     disableAirPump();
+    disableRelays();
     delay(1000);
 }
