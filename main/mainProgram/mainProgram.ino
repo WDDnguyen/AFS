@@ -5,6 +5,7 @@ dht DHT;
 MovingAverageFilter movingAverageFilter(15);
 
 //Constants, on schematic, pin - 1
+#define PH_SENSOR       0
 #define DHT22_PIN       2   // Temperature and Humidity Sensor
 #define LED_ROW_1       3   // First row of each LED Strip
 #define LED_ROW_2       4   // Second row of each LED Strip
@@ -16,11 +17,14 @@ MovingAverageFilter movingAverageFilter(15);
 #define RELAY2_IN_2     10  // Heater
 #define AIR_PUMP        11  
 #define SOLUTION_PUMP   12
-#define WATER_PUMP      13 
+#define WATER_PUMP      13
+
 
 //Variables
 float hum;          //Stores humidity value
 float temp;         //Stores temperature value
+float ph_offset = 0.00;
+float ph;
 int chk;            //Read sensor value
 String humidity;    // display humidity
 String temperature; // display temperature
@@ -57,6 +61,14 @@ void pollTempSensor(){
 
     
     delay(2000); //Delays 2 sec.
+}
+
+void pollPHSensor() {
+    float voltage = 5.0 * analogRead(PH_SENSOR) / 1024;
+    float rawPH = 3.5*voltage+ph_offset; //to millivolt, to phValue
+    ph = movingAverageFilter.process(rawPH);
+    Serial.println("PH avg value:" + String(ph));
+    delay(2000);
 }
 
 void setLEDRows(){
@@ -118,7 +130,8 @@ void disableRelays(){
 
 void loop()
 {
-    pollTempSensor();
+//    pollTempSensor();
+      pollPHSensor();
 //    setLEDRows();
 //    setWaterPump();
 //    setSolutionPump();
