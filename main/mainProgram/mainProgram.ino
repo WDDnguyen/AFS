@@ -18,6 +18,10 @@ dht DHT;
 #define SOLUTION_PUMP   12
 #define WATER_PUMP      13
 
+#define SPROUT_PHASE 0
+#define GROWTH_PHASE 1
+#define COLLECTION_PHASE 2
+
 #define SPROUT_PERIOD 7
 #define GROWTH_PERIOD 25
 
@@ -30,13 +34,14 @@ String temperature; // display temperature
 
 int sproutFinalDayFromStart;
 int growthFinalDayFromStart;
-
+int currentPhase;
 
 void setup()
 {
   Serial.begin(9600);
   sproutFinalDayFromStart = day() + SPROUT_PERIOD ;
   growthFinalDayFromStart = day() + SPROUT_PERIOD + GROWTH_PERIOD ;
+  currentPhase = SPROUT_PHASE;
   
   pinMode(LED_ROW_1, OUTPUT);
   pinMode(LED_ROW_2, OUTPUT);
@@ -122,10 +127,17 @@ void disableRelays() {
 
 void loop()
 {
-  Serial.println(sproutFinalDayFromStart);
-  Serial.println(growthFinalDayFromStart);
   digitalClockDisplay();
-  delay(1000);
+  determinePhase();
+  if (currentPhase == SPROUT_PHASE){
+    sproutPhase();
+  }else if (currentPhase == GROWTH_PHASE {
+    growthPhase();
+  }else if (currentPhase == COLLECTION_PHASE {
+    collectionPhase();
+  }
+  
+  delay(5000);
   /*pollTempSensor();
     setLEDRows();
     setWaterPump();
@@ -160,6 +172,14 @@ void digitalClockDisplay() {
   Serial.println();
 }
 
+int determinePhase(){
+  if (day() >= sproutFinalDayFromStart){
+    currentPhase = GROWTH_PHASE;
+  } else if ( day() >= growthFinalDayFromStart){
+    currentPhase = COLLECTION_PHASE;
+  }
+}
+
 void printDigits(int digits) {
   // utility function for digital clock display: prints preceding colon and leading 0
   Serial.print(":");
@@ -167,5 +187,4 @@ void printDigits(int digits) {
     Serial.print('0');
   Serial.print(digits);
 }
-
 
