@@ -1,21 +1,16 @@
 //Libraries
 #include "dht.h"
-<<<<<<< HEAD
 #include "TimeLib.h"
 #include "Time.h"
-
-dht DHT;
-//Constants
-#define DHT22_PIN       2   // Temperature and Humidity Sensor
-=======
 #include "MovingAverageFilter.h"
 #include "OneWire.h"
+
 
 dht DHT;
 MovingAverageFilter movingAverageFilter(15); //might be necessary to create mult objects for mul
 
-
 //Constants, on schematic, pin - 1
+#define DHT22_PIN       2   // Temperature and Humidity Sensor
 #define PH_SENSOR       0   // pH Sensor (POLL)
 #define EC_SENSOR       1   // EC Sensor (POLL)
 
@@ -233,15 +228,27 @@ void disableRelays() {
   digitalWrite(RELAY2_IN_2, LOW);
 }
 
+void sproutPhase(){
+  
+}
+
+void growthPhase(){
+  
+}
+
+void collectionPhase(){
+  
+}
+
 void loop()
 {
   digitalClockDisplay();
   determinePhase();
   if (currentPhase == SPROUT_PHASE){
     sproutPhase();
-  }else if (currentPhase == GROWTH_PHASE {
+  }else if (currentPhase == GROWTH_PHASE) {
     growthPhase();
-  }else if (currentPhase == COLLECTION_PHASE {
+  }else if (currentPhase == COLLECTION_PHASE) {
     collectionPhase();
   }
   
