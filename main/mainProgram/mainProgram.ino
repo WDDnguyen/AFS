@@ -33,10 +33,17 @@
 #define StartConvert 0
 #define ReadTemperature 1
 
-#define PH_THRESHOLD_MARGIN 999 // need to determine the threshold 
-#define EC_THRESHOLD_MARGIN 999 // need to determine the threshold 
-#define PH_REQUIRED_VALUE 999 // need to determine required value 
-#define EC_REQUIRED_VALUE 999 // need to determined required value 
+// Threshold margins (need to set threshold for values here)
+#define PH_THRESHOLD_MARGIN 999 
+#define EC_THRESHOLD_MARGIN 999
+#define TEMPERATURE_THRESHOLD_MARGIN 999 
+#define HUMIDITY_THRESHOLD_MARGIN 999
+
+// Plants Required values (need to set determined value here)
+#define TEMPERATURE_REQUIRED_VALUE 999 
+#define HUMIDITY_REQUIRED_VALUE 999
+#define PH_REQUIRED_VALUE 999
+#define EC_REQUIRED_VALUE 999 
 
 // Objects 
 dht DHT;
@@ -54,8 +61,11 @@ String humidity;       // display humidity
 String temperature;    // display temperature
 int hum_filter[10];
 int temp_filter[10];
+
 int pHThreshold;
 int ecThreshold;
+int temperatureThreshold;
+int humidityThreshold;
 
 int germinationFinalDayFromStart; // not used yet   
 int growthFinalDayFromStart;
@@ -85,6 +95,9 @@ void setup()
   currentPhase = GROWTH_PHASE;
   pHThreshold = PH_THRESHOLD_MARGIN + PH_REQUIRED_VALUE;
   ecThreshold = EC_THRESHOLD_MARGIN + EC_REQUIRED_VALUE;
+  temperatureThreshold = TEMPERATURE_THRESHOLD_MARGIN + TEMPERATURE_REQUIRED_VALUE;
+  humidityThreshold = HUMIDITY_THRESHOLD_MARGIN + HUMIDITY_REQUIRED_VALUE;
+
 }
 
    
@@ -272,10 +285,6 @@ int determinePhase(int currentPhase){
   }
 }
 
-void rotatePipes(){
-  // set the servos to rotate
-}
-
 void resetTimer(){
   // reset the timers and wait for next batch
 }
@@ -327,7 +336,6 @@ void activateHydroponics(){
   */
 }
 
-
 void disableHydroponics(){
   digitalWrite(RELAY1_IN_1 ,LOW);
   digitalWrite(WATER_PUMP ,LOW);
@@ -336,23 +344,44 @@ void disableHydroponics(){
 }
 
 void activateSystemRegulation(){
-  
-}
+  digitalWrite(LED_ROW_1 ,HIGH);
+  digitalWrite(LED_ROW_2 ,HIGH);
+  // poll humidity and temperature pin before checking for condition
+  // do temperature filtering
+  // decide if temperature is correct
+  // if (temperature > temperatureThreshold){
+        digitalWrite(RELAY1_IN_2, LOW); // heater 
+        digitalWrite(RELAY2_IN_2, HIGH); // FAN  
+     } else if ( temperature < temperatureThreshold){
+        digitalWrite(RELAY1_IN_2, HIGH); // heater 
+        digitalWrite(RELAY2_IN_2, LOW); // FAN  
+     } else {
+        digitalWrite(RELAY1_IN_2, LOW); // heater 
+        digitalWrite(RELAY2_IN_2, LOW); // FAN  
+     }
 
+     if (humidity > humidityThreshold){
+        digitalWrite(RELAY2_IN_2, HIGH); // FAN  
+     } else {
+        digitalWrite(RELAY2_IN_2, LOW); // FAN  
+     }
+}
 
 void disableSystemRegulation(){
-  
+  digitalWrite(LED_ROW_1 ,LOW);
+  digitalWrite(LED_ROW_2 ,LOW);
+  digitalWrite(RELAY1_IN_2,LOW);
+  digitalWrite(RELAY2_IN_2,LOW);
 }
 
-rotatePipes(){
+void rotatePipes(){
   // need to use servos before coding it 
 }
-
 
 void growthPhase(){
   disableDripPump();
   activateHydroponics();
-  activateRegulationSystem();
+  activateSystemRegulation();
 }
 
 void collectionPhase(){
