@@ -1,20 +1,15 @@
-//Libraries
+// Libraries
 #include "dht.h"
 #include "TimeLib.h"
 #include "Time.h"
 #include "MovingAverageFilter.h"
 #include "OneWire.h"
 
-
-dht DHT;
-MovingAverageFilter movingAverageFilter(15); //might be necessary to create mult objects for mul
-
-//Constants, on schematic, pin - 1
-#define DHT22_PIN       2   // Temperature and Humidity Sensor
+// Constants, on schematic, pin - 1
 #define PH_SENSOR       0   // pH Sensor (POLL)
 #define EC_SENSOR       1   // EC Sensor (POLL)
-
 #define EC_TEMPSENSOR   2   // Liquid TEMP Sensor (POLL)
+#define DHT22_PIN       2   // Temperature and Humidity Sensor
 #define LED_ROW_1       3   // First row of each LED Strip
 #define LED_ROW_2       4   // Second row of each LED Strip
 #define PIPE_SERVO_1    5
@@ -27,41 +22,53 @@ MovingAverageFilter movingAverageFilter(15); //might be necessary to create mult
 #define SOLUTION_PUMP   12
 #define WATER_PUMP      13
 
-#define SPROUT_PHASE 0
+// Constants for phases
+#define GERMINATION_PHASE 0 // not used yet 
 #define GROWTH_PHASE 1
 #define COLLECTION_PHASE 2
-
-#define SPROUT_PERIOD 7
 #define GROWTH_PERIOD 25
+#define GERMINATION_PERIOD 7
 
-//For the EC Sensor
+// Constants for pH/EC Sensors
 #define StartConvert 0
 #define ReadTemperature 1
 
-//Variables
-float hum;          //Stores humidity value
-float temp;         //Stores temperature value
+#define PH_THRESHOLD_MARGIN 999 // need to determine the threshold 
+#define EC_THRESHOLD_MARGIN 999 // need to determine the threshold 
+#define PH_REQUIRED_VALUE 999 // need to determine required value 
+#define EC_REQUIRED_VALUE 999 // need to determined required value 
+
+// Objects 
+dht DHT;
+MovingAverageFilter movingAverageFilter(15); //might be necessary to create mult objects for mul
+OneWire ds(EC_TEMPSENSOR);
+
+// Variables
+float hum;             //Stores humidity value
+float temp;            //Stores temperature value
 float ph_offset = 0.00;
 float ph;
 float ECcurrent;
-int chk;            //Read sensor value
-String humidity;    // display humidity
-String temperature; // display temperature
+int chk;               // Read sensor value
+String humidity;       // display humidity
+String temperature;    // display temperature
 int hum_filter[10];
 int temp_filter[10];
+int pHThreshold;
+int ecThreshold;
 
-OneWire ds(EC_TEMPSENSOR);
-
-int sproutFinalDayFromStart;
+int germinationFinalDayFromStart; // not used yet   
 int growthFinalDayFromStart;
 int currentPhase;
+
 
 void setup()
 {
   Serial.begin(9600);
-  sproutFinalDayFromStart = day() + SPROUT_PERIOD ;
-  growthFinalDayFromStart = day() + SPROUT_PERIOD + GROWTH_PERIOD ;
-  currentPhase = SPROUT_PHASE;
+  germinationFinalDayFromStart = day() + GERMINATION_PERIOD; // not used yet 
+  growthFinalDayFromStart = day() + GROWTH_PERIOD ; // if not using germination period then -> 25 days 
+  currentPhase = GROWTH_PHASE; // set to default GROWTH PHASE until germination is done 
+
   
   pinMode(LED_ROW_1, OUTPUT);
   pinMode(LED_ROW_2, OUTPUT);
@@ -75,6 +82,9 @@ void setup()
   pinMode(SOLUTION_PUMP, OUTPUT);
   pinMode(WATER_PUMP, OUTPUT);
   TempProcess(StartConvert);
+  currentPhase = GROWTH_PHASE;
+  pHThreshold = PH_THRESHOLD_MARGIN + PH_REQUIRED_VALUE;
+  ecThreshold = EC_THRESHOLD_MARGIN + EC_REQUIRED_VALUE;
 }
 
    
@@ -228,29 +238,142 @@ void disableRelays() {
   digitalWrite(RELAY2_IN_2, LOW);
 }
 
-void sproutPhase(){
+void digitalClockDisplay() {
+  // digital clock display of the time
+  Serial.print(hour());
+  printDigits(minute());
+  printDigits(second());
+  Serial.print(" ");
+  Serial.print(day());
+  Serial.print(" ");
+  Serial.print(month());
+  Serial.print(" ");
+  Serial.print(year());
+  Serial.println();
+}
+
+void printDigits(int digits) {
+  // utility function for digital clock display: prints preceding colon and leading 0
+  Serial.print(":");
+  if (digits < 10)
+    Serial.print('0');
+  Serial.print(digits);
+}
+
+int determinePhase(int currentPhase){ 
+  if(currentPhase == GERMINATION_PHASE){
+    Serial.println("NOW IN GERMINATION PHASE");
+    return GERMINATION_PHASE;
+  }
+  if (currentPhase == COLLECTION_PHASE){
+    return GROWTH_PHASE;
+  } else if ( day() >= growthFinalDayFromStart){
+    return COLLECTION_PHASE;
+  }
+}
+
+void rotatePipes(){
+  // set the servos to rotate
+}
+
+void resetTimer(){
+  // reset the timers and wait for next batch
+}
+
+
+// functions not used yet 
+
+void activateDripPump(){
+  digitalWrite(RELAY2_IN_1,HIGH);
+}
+
+void disableDripPump(){
+  digitalWrite(RELAY2_IN_1,LOW);
+}
+
+void germinationPhase(){
+  Serial.println("Executing Germination Phase");
+}
+
+void activateHydroponics(){
+  digitalWrite(RELAY1_IN_1 ,HIGH);
+  /* poll pH and EC sensors before going through the conditions  
+  / if (pH > pHThreshold){
+      digitalWrite(WATER_PUMP,LOW);
+      digitalWrite(SOLUTION_PUMP,LOW);
+      digitalWrite(AIR_PUMP,LOW); // probably change for PH down        
+    } else if (pH < pHThreshold){
+      digitalWrite(WATER_PUMP,LOW);
+      digitalWrite(SOLUTION_PUMP,LOW);
+      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+    } else {
+      digitalWrite(WATER_PUMP,LOW);
+      digitalWrite(SOLUTION_PUMP,LOW);
+      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+    }
+    if (ec > ecThreshold){
+      digitalWrite(WATER_PUMP,LOW);
+      digitalWrite(SOLUTION_PUMP,LOW);
+      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+    } else if ( ec < ecThreshold) {
+      digitalWrite(WATER_PUMP,LOW);
+      digitalWrite(SOLUTION_PUMP,LOW);
+      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+    } else {
+      digitalWrite(WATER_PUMP,LOW);
+      digitalWrite(SOLUTION_PUMP,LOW);
+      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+    }
+  */
+}
+
+
+void disableHydroponics(){
+  digitalWrite(RELAY1_IN_1 ,LOW);
+  digitalWrite(WATER_PUMP ,LOW);
+  digitalWrite(SOLUTION_PUMP ,LOW);
+  digitalWrite(AIR_PUMP ,LOW); // to change for PH down
+}
+
+void activateSystemRegulation(){
   
 }
 
-void growthPhase(){
+
+void disableSystemRegulation(){
   
+}
+
+rotatePipes(){
+  // need to use servos before coding it 
+}
+
+
+void growthPhase(){
+  disableDripPump();
+  activateHydroponics();
+  activateRegulationSystem();
 }
 
 void collectionPhase(){
-  
+  disableHydroponics();
+  disableRegulation();
+  rotatePipes();  
 }
 
 void loop()
 {
   digitalClockDisplay();
-  determinePhase();
-  if (currentPhase == SPROUT_PHASE){
-    sproutPhase();
-  }else if (currentPhase == GROWTH_PHASE) {
+  currentPhase = determinePhase(currentPhase);
+  if (currentPhase == GERMINATION_PHASE){
+    Serial.println("DETERMINED THAT IT IS IN GERMINATION PHASE");
+  }
+  if (currentPhase == GROWTH_PHASE) {
     growthPhase();
   }else if (currentPhase == COLLECTION_PHASE) {
     collectionPhase();
   }
+  
   
   delay(5000);
   /*
@@ -274,36 +397,3 @@ void loop()
     delay(1000);
   */
 }
-
-
-
-void digitalClockDisplay() {
-  // digital clock display of the time
-  Serial.print(hour());
-  printDigits(minute());
-  printDigits(second());
-  Serial.print(" ");
-  Serial.print(day());
-  Serial.print(" ");
-  Serial.print(month());
-  Serial.print(" ");
-  Serial.print(year());
-  Serial.println();
-}
-
-int determinePhase(){
-  if (day() >= sproutFinalDayFromStart){
-    currentPhase = GROWTH_PHASE;
-  } else if ( day() >= growthFinalDayFromStart){
-    currentPhase = COLLECTION_PHASE;
-  }
-}
-
-void printDigits(int digits) {
-  // utility function for digital clock display: prints preceding colon and leading 0
-  Serial.print(":");
-  if (digits < 10)
-    Serial.print('0');
-  Serial.print(digits);
-}
-
