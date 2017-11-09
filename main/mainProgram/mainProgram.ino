@@ -10,24 +10,25 @@
 #define EC_SENSOR       1   // EC Sensor (POLL)
 #define EC_TEMPSENSOR   2   // Liquid TEMP Sensor (POLL)
 #define DHT22_PIN       2   // Temperature and Humidity Sensor
-#define LED_ROW_1       3   // First row of each LED Strip
-#define LED_ROW_2       4   // Second row of each LED Strip
-#define PIPE_SERVO_1    5
-#define PIPE_SERVO_2    6
-#define RELAY1_IN_1     7   // Mix tank pump       
-#define RELAY1_IN_2     8   // Fan
-#define RELAY2_IN_1     9   // Dripping tank pump
-#define RELAY2_IN_2     10  // Heater
-#define AIR_PUMP        11
-#define SOLUTION_PUMP   12
-#define WATER_PUMP      13
+#define LED_ROW_1       3   // Top row of each LED Strip
+#define LED_ROW_2       4   // Bottom row of each LED Strip
+#define PIPE_SERVO_1    5   // Top row pipe servo
+#define PIPE_SERVO_2    6   // Bottom row pipe servo
+#define MIX_TANK_PUMP   7   // Main tank relay pin
+#define FAN_PIN         8   // Fan relay pin
+#define DRIP_PUMP       9   // Germination relay pin
+#define HEATER_PIN      10  // Heater relay pin
+#define AIR_PUMP        11  // Air pump pin
+#define SOLUTION_PUMP   12  // Solution pump pin
+#define WATER_PUMP      13  // Water pump pin
 
 // Constants for phases
 #define GERMINATION_PHASE 0 // not used yet 
 #define GROWTH_PHASE 1
 #define COLLECTION_PHASE 2
+
 #define GROWTH_PERIOD 25
-#define GERMINATION_PERIOD 7
+#define GERMINATION_PERIOD 7 // not used yet 
 
 // Constants for pH/EC Sensors
 #define StartConvert 0
@@ -54,7 +55,7 @@ OneWire ds(EC_TEMPSENSOR);
 float hum;             //Stores humidity value
 float temp;            //Stores temperature value
 float ph_offset = 0.00;
-float ph;
+float pH;
 float ECcurrent;
 int chk;               // Read sensor value
 String humidity;       // display humidity
@@ -62,74 +63,81 @@ String temperature;    // display temperature
 int hum_filter[10];
 int temp_filter[10];
 
-int pHThreshold;
-int ecThreshold;
-int temperatureThreshold;
-int humidityThreshold;
+float pHThreshold;
+float ecThreshold;
+float temperatureThreshold;
+float humidityThreshold;
 
 int germinationFinalDayFromStart; // not used yet   
 int growthFinalDayFromStart;
 int currentPhase;
 
-
 void setup()
 {
   Serial.begin(9600);
-  germinationFinalDayFromStart = day() + GERMINATION_PERIOD; // not used yet 
-  growthFinalDayFromStart = day() + GROWTH_PERIOD ; // if not using germination period then -> 25 days 
-  currentPhase = GROWTH_PHASE; // set to default GROWTH PHASE until germination is done 
-
-  
   pinMode(LED_ROW_1, OUTPUT);
   pinMode(LED_ROW_2, OUTPUT);
   pinMode(PIPE_SERVO_1, OUTPUT);
   pinMode(PIPE_SERVO_2, OUTPUT);
-  pinMode(RELAY1_IN_1, OUTPUT);
-  pinMode(RELAY1_IN_2, OUTPUT);
-  pinMode(RELAY2_IN_1, OUTPUT);
-  pinMode(RELAY2_IN_2, OUTPUT);
+  pinMode(MIX_TANK_PUMP, OUTPUT);
+  pinMode(FAN_PIN, OUTPUT);
+  pinMode(DRIP_PUMP, OUTPUT);
+  pinMode(HEATER_PIN, OUTPUT);
   pinMode(AIR_PUMP, OUTPUT);
   pinMode(SOLUTION_PUMP, OUTPUT);
   pinMode(WATER_PUMP, OUTPUT);
+  
+  germinationFinalDayFromStart = day() + GERMINATION_PERIOD; // not used yet 
+  growthFinalDayFromStart = day() + GROWTH_PERIOD ; // if not using germination period then -> 25 days 
+  currentPhase = GROWTH_PHASE; // set to default GROWTH PHASE until germination is done 
+  
   TempProcess(StartConvert);
-  currentPhase = GROWTH_PHASE;
   pHThreshold = PH_THRESHOLD_MARGIN + PH_REQUIRED_VALUE;
   ecThreshold = EC_THRESHOLD_MARGIN + EC_REQUIRED_VALUE;
   temperatureThreshold = TEMPERATURE_THRESHOLD_MARGIN + TEMPERATURE_REQUIRED_VALUE;
   humidityThreshold = HUMIDITY_THRESHOLD_MARGIN + HUMIDITY_REQUIRED_VALUE;
-
 }
 
-   
-void pollTempSensor(){
-    //Temperature and Humidity Sampling
+float pollHumiditySensor(){
+  // humiditySensor 
+  chk = DHT.read22(DHT22_PIN);
+  hum = movingAverageFilter.process(DHT.humidity);
+  humidity = String(hum);
+  Serial.print("Humidity: " + humidity);
+  Serial.print("Without Filter => Humidity: " + String(DHT.humidity));
+}
+float pollTempSensor(){
+    //Temperature Sampling
     chk = DHT.read22(DHT22_PIN);
-    hum = movingAverageFilter.process(DHT.humidity);
     temp= movingAverageFilter.process(DHT.temperature);
 
     //Print temp and humidity values to serial monitor
-    humidity = String(hum);
+  
     temperature = String(temp);
-    Serial.print("Humidity: " + humidity + " %, Temperature : " + temperature + " Celsius \n");
-    Serial.print("Without Filter => Humidity: " + String(DHT.humidity) + " %, Temperature : " + String(DHT.temperature) + " Celsius \n");
-    
-    delay(2000); //Delays 2 sec.
+    Serial.print("Temperature : " + temperature + " Celsius \n");
+    Serial.print("Temperature : " + String(DHT.temperature) + " Celsius \n");
+
+    return temp;
+    // not delaying it for now  
+    // delay(2000); //Delays 2 sec.
 }
 
-void pollPHSensor() {
+float pollPHSensor() {
     float voltage = 5.0 * analogRead(PH_SENSOR) / 1024;
     float rawPH = 3.5*voltage+ph_offset; //to millivolt, to phValue
-    ph = movingAverageFilter.process(rawPH);
-    Serial.println("PH avg value:" + String(ph));
-    delay(2000);
+    pH = movingAverageFilter.process(rawPH);
+    Serial.println("PH avg value:" + String(pH));
+    return pH;    
+    // not delaying it for now 
+    //delay(2000);
 }
 
-void pollECSensor() {
+float pollECSensor() {
     float avgAnalogValue = movingAverageFilter.process(analogRead(EC_SENSOR));
     //Serial.println(String(avgAnalogValue));
     float temperature = TempProcess(ReadTemperature);  // read the current temperature from the  DS18B20
     TempProcess(StartConvert);                   //after the reading,start the convert for next reading
-Serial.println(String(temperature));
+    Serial.println(String(temperature));
     
     float avgVoltage = avgAnalogValue * (float) 5000/1024;
     float TempCoefficient=1.0+0.0185*(temperature-25.0);    //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.0185*(fTP-25.0));
@@ -147,7 +155,8 @@ Serial.println(String(temperature));
       Serial.println("ms/cm");
     }
 
-    delay(2000);
+    return ECcurrent;
+    //delay(2000);
 }
 
 /*
@@ -238,17 +247,25 @@ void disablePipeMotors() {
 }
 
 void setRelays() {
-  digitalWrite(RELAY1_IN_1, HIGH);
-  digitalWrite(RELAY1_IN_2, HIGH);
-  digitalWrite(RELAY2_IN_1, HIGH);
-  digitalWrite(RELAY2_IN_2, HIGH);
+  digitalWrite(MIX_TANK_PUMP, HIGH);
+  digitalWrite(FAN_PIN, HIGH);
+  digitalWrite(DRIP_PUMP, HIGH);
+  digitalWrite(HEATER_PIN, HIGH);
 }
 
 void disableRelays() {
-  digitalWrite(RELAY1_IN_1, LOW);
-  digitalWrite(RELAY1_IN_2, LOW);
-  digitalWrite(RELAY2_IN_1, LOW);
-  digitalWrite(RELAY2_IN_2, LOW);
+  digitalWrite(MIX_TANK_PUMP, LOW);
+  digitalWrite(FAN_PIN, LOW);
+  digitalWrite(DRIP_PUMP, LOW);
+  digitalWrite(HEATER_PIN, LOW);
+}
+
+void activateDripPump(){
+  digitalWrite(DRIP_PUMP,HIGH);
+}
+
+void disableDripPump(){
+  digitalWrite(DRIP_PUMP,LOW);
 }
 
 void digitalClockDisplay() {
@@ -275,7 +292,7 @@ void printDigits(int digits) {
 
 int determinePhase(int currentPhase){ 
   if(currentPhase == GERMINATION_PHASE){
-    Serial.println("NOW IN GERMINATION PHASE");
+    Serial.println("NOW IN GERMINATION PHASE NOT IMPLEMENTED YET");
     return GERMINATION_PHASE;
   }
   if (currentPhase == COLLECTION_PHASE){
@@ -285,93 +302,81 @@ int determinePhase(int currentPhase){
   }
 }
 
-void resetTimer(){
-  // reset the timers and wait for next batch
-}
-
-
-// functions not used yet 
-
-void activateDripPump(){
-  digitalWrite(RELAY2_IN_1,HIGH);
-}
-
-void disableDripPump(){
-  digitalWrite(RELAY2_IN_1,LOW);
-}
-
-void germinationPhase(){
-  Serial.println("Executing Germination Phase");
-}
-
 void activateHydroponics(){
-  digitalWrite(RELAY1_IN_1 ,HIGH);
-  /* poll pH and EC sensors before going through the conditions  
-  / if (pH > pHThreshold){
-      digitalWrite(WATER_PUMP,LOW);
-      digitalWrite(SOLUTION_PUMP,LOW);
-      digitalWrite(AIR_PUMP,LOW); // probably change for PH down        
-    } else if (pH < pHThreshold){
-      digitalWrite(WATER_PUMP,LOW);
-      digitalWrite(SOLUTION_PUMP,LOW);
-      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
-    } else {
-      digitalWrite(WATER_PUMP,LOW);
-      digitalWrite(SOLUTION_PUMP,LOW);
-      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
-    }
-    if (ec > ecThreshold){
-      digitalWrite(WATER_PUMP,LOW);
-      digitalWrite(SOLUTION_PUMP,LOW);
-      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
-    } else if ( ec < ecThreshold) {
-      digitalWrite(WATER_PUMP,LOW);
-      digitalWrite(SOLUTION_PUMP,LOW);
-      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
-    } else {
-      digitalWrite(WATER_PUMP,LOW);
-      digitalWrite(SOLUTION_PUMP,LOW);
-      digitalWrite(AIR_PUMP,LOW); // probably change for PH down
-    }
-  */
-}
-
-void disableHydroponics(){
-  digitalWrite(RELAY1_IN_1 ,LOW);
-  digitalWrite(WATER_PUMP ,LOW);
-  digitalWrite(SOLUTION_PUMP ,LOW);
-  digitalWrite(AIR_PUMP ,LOW); // to change for PH down
+  digitalWrite(MIX_TANK_PUMP ,HIGH);
+  /* poll pH and EC sensors before going through the conditions */
+  float currentPH = pollPHSensor();
+  float currentEc = pollECSensor();
+   
+  if (currentPH > pHThreshold){
+    digitalWrite(WATER_PUMP,LOW);
+    digitalWrite(SOLUTION_PUMP,LOW);
+    digitalWrite(AIR_PUMP,LOW); // probably change for PH down        
+  } else if (currentPH < pHThreshold){
+    digitalWrite(WATER_PUMP,LOW);
+    digitalWrite(SOLUTION_PUMP,LOW);
+    digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+  } else {
+    digitalWrite(WATER_PUMP,LOW);
+    digitalWrite(SOLUTION_PUMP,LOW);
+    digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+  }
+  
+  if (currentEc > ecThreshold){
+    digitalWrite(WATER_PUMP,LOW);
+    digitalWrite(SOLUTION_PUMP,LOW);
+    digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+  } else if (currentEc < ecThreshold) {
+    digitalWrite(WATER_PUMP,LOW);
+    digitalWrite(SOLUTION_PUMP,LOW);
+    digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+  } else {
+    digitalWrite(WATER_PUMP,LOW);
+    digitalWrite(SOLUTION_PUMP,LOW);
+    digitalWrite(AIR_PUMP,LOW); // probably change for PH down
+  }
 }
 
 void activateSystemRegulation(){
   digitalWrite(LED_ROW_1 ,HIGH);
   digitalWrite(LED_ROW_2 ,HIGH);
-  // poll humidity and temperature pin before checking for condition
-  // do temperature filtering
-  // decide if temperature is correct
-  // if (temperature > temperatureThreshold){
-        digitalWrite(RELAY1_IN_2, LOW); // heater 
-        digitalWrite(RELAY2_IN_2, HIGH); // FAN  
-     } else if ( temperature < temperatureThreshold){
-        digitalWrite(RELAY1_IN_2, HIGH); // heater 
-        digitalWrite(RELAY2_IN_2, LOW); // FAN  
+  float currentTemperature = pollTempSensor();
+  float currentHumidity = pollHumiditySensor();
+  
+  if (currentTemperature > temperatureThreshold){
+        digitalWrite(FAN_PIN, LOW); // heater 
+        digitalWrite(HEATER_PIN, HIGH); // FAN  
+     } else if (currentTemperature < temperatureThreshold){
+        digitalWrite(FAN_PIN, HIGH); // heater 
+        digitalWrite(HEATER_PIN, LOW); // FAN  
      } else {
-        digitalWrite(RELAY1_IN_2, LOW); // heater 
-        digitalWrite(RELAY2_IN_2, LOW); // FAN  
+        digitalWrite(FAN_PIN, LOW); // heater 
+        digitalWrite(HEATER_PIN, LOW); // FAN  
      }
 
-     if (humidity > humidityThreshold){
-        digitalWrite(RELAY2_IN_2, HIGH); // FAN  
-     } else {
-        digitalWrite(RELAY2_IN_2, LOW); // FAN  
+     if (currentHumidity > humidityThreshold){
+     digitalWrite(HEATER_PIN, HIGH); // FAN  
+     }else {
+        digitalWrite(HEATER_PIN, LOW); // FAN  
      }
+}
+
+void disableHydroponics(){
+  digitalWrite(MIX_TANK_PUMP ,LOW);
+  digitalWrite(WATER_PUMP ,LOW);
+  digitalWrite(SOLUTION_PUMP ,LOW);
+  digitalWrite(AIR_PUMP ,LOW); // to change for PH down
 }
 
 void disableSystemRegulation(){
   digitalWrite(LED_ROW_1 ,LOW);
   digitalWrite(LED_ROW_2 ,LOW);
-  digitalWrite(RELAY1_IN_2,LOW);
-  digitalWrite(RELAY2_IN_2,LOW);
+  digitalWrite(FAN_PIN,LOW);
+  digitalWrite(HEATER_PIN,LOW);
+}
+
+void germinationPhase(){
+  Serial.println("Executing Germination Phase");
 }
 
 void rotatePipes(){
@@ -386,7 +391,7 @@ void growthPhase(){
 
 void collectionPhase(){
   disableHydroponics();
-  disableRegulation();
+  disableSystemRegulation();
   rotatePipes();  
 }
 
@@ -402,9 +407,7 @@ void loop()
   }else if (currentPhase == COLLECTION_PHASE) {
     collectionPhase();
   }
-  
-  
-  delay(5000);
+  delay(1000);
   /*
   pollTempSensor();
   pollPHSensor();
