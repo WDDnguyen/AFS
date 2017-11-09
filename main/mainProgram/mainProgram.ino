@@ -202,7 +202,6 @@ float TempProcess(bool ch)
           return TemperatureSum;  
 }
 
-
 void setLEDRows() {
   digitalWrite(LED_ROW_1, HIGH);
   digitalWrite(LED_ROW_2, HIGH);
@@ -344,20 +343,20 @@ void activateSystemRegulation(){
   float currentHumidity = pollHumiditySensor();
   
   if (currentTemperature > temperatureThreshold){
-        digitalWrite(FAN_PIN, LOW); // heater 
-        digitalWrite(HEATER_PIN, HIGH); // FAN  
+        digitalWrite(FAN_PIN, LOW); 
+        digitalWrite(HEATER_PIN, HIGH);  
      } else if (currentTemperature < temperatureThreshold){
-        digitalWrite(FAN_PIN, HIGH); // heater 
-        digitalWrite(HEATER_PIN, LOW); // FAN  
+        digitalWrite(FAN_PIN, HIGH); 
+        digitalWrite(HEATER_PIN, LOW);  
      } else {
-        digitalWrite(FAN_PIN, LOW); // heater 
-        digitalWrite(HEATER_PIN, LOW); // FAN  
+        digitalWrite(FAN_PIN, LOW); 
+        digitalWrite(HEATER_PIN, LOW);  
      }
 
      if (currentHumidity > humidityThreshold){
-     digitalWrite(HEATER_PIN, HIGH); // FAN  
+     digitalWrite(HEATER_PIN, HIGH);  
      }else {
-        digitalWrite(HEATER_PIN, LOW); // FAN  
+        digitalWrite(HEATER_PIN, LOW);  
      }
 }
 
